@@ -7,7 +7,13 @@ layout: default
       <li>
           <h2><a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">{{ post.title }}</a></h2>
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time>
-          <p>{{ post.content | split: '</p>' | first | strip_html }}</p>
+ 	  {% assign first_paragraph = post.content | split: '</p>' | first %}
+	  {% if first_paragraph contains '<img' %}
+	    {% assign summary = post.content | split: '</p>' | slice: 1 | first | strip_html %}
+	  {% else %}
+    	    {% assign summary = first_paragraph | strip_html %}
+	  {% endif %}
+	  <p>{{ summary }}</p>         
       </li>
     {% endfor %}
 </ul>
