@@ -1,15 +1,15 @@
 ---
-title: "What I've Learnt, Part 1"
+title: "Reflections on My Journey: What I've Learnt, Part 1"
 date: 2024-01-28
 ---
 
-### _It's been nearly 4 years since I started on the road to becoming a professional software engineer. What have I learnt in this time?_
+### _Nearly four years have passed since I embarked on my quest to become a professional software engineer. So, what nuggets of wisdom have I gathered along the way?_
 
-I thought it might be quite fun to start by taking a look back at some of the code I wrote very early on and go over anything that I was completely oblivious of at the time and reflect on how it felt to be stepping into the big wide world of programming.
+Join me as I take a nostalgic stroll down memory lane, revisiting some of the early code I penned as a fledgling programmer. It’s fascinating to reflect on the moments when I was blissfully unaware of the vast expanse of knowledge yet to be discovered in the world of coding.
 
-One of the first projects I took on as a learning exercise was a GUI program to download and extract MP3s from YouTube videos. I have a very close friend who was a few steps further along the road to me at the time, as he had already taken the plunge and was already maintaining his first mobile app, and when I told him what I was doing he offered me a useful criteria - he said it should take the JSON from exported Firefox bookmarks and download the whole list of MP3s. It was upon receiving this challenge, I think, that I realised how much of a buzz it is to have an extrinsic goal to be working towards, with other stakeholders involved. I succeeded in making my little Python Tkinter app do what he had asked. I even had some multithreading in there if I remember rightly so that I could show the progress of the downloads, but I probably had very little idea of what that entailed under the hood, and had just found something on StackOverflow that pointed me towards multithreading. One thing I remember definitely not understanding at this time was classes in Python. I was using them for sure, but the way I was using them was extremely naive.
+One of my inaugural projects – a genuine learning endeavour – was a GUI application designed to download and extract MP3s from YouTube videos. At that time, I had a close friend who was already well-versed in the programming realm; he was busy maintaining his first mobile app. When I shared my ambitious project with him, he issued a challenge: "Why not use the JSON from exported Firefox bookmarks to download an entire list of MP3s?" This was the moment I realised the motivation that comes from having a concrete goal, especially with others invested in your success. I proudly crafted my little Python Tkinter app to meet his expectations. I recall even dabbling in multithreading to showcase download progress—though if I’m honest, I barely grasped the concept at the time! My forays into Python classes were equally naive: I was using them, but lacked any real understanding.
 
-The first thing I notice looking back the code, is how everything is in the same file! Admittedly, it's not a huge program, but still, there's plenty of different things going on in this file. There's a window to download MP3s, a window to download MP4s and a main window.
+Looking back at my early code, one aspect stands out: everything was crammed into a single file. Sure, it wasn't a colossal program, but there were various distinct functionalities all located in that one space. I had a window for downloading MP3s, a separate one for MP4s, and the main interface.
 
 ```python
 LARGE_FONT = 'Verdana 14 bold'
@@ -55,14 +55,13 @@ class Pymp(tk.Tk):
         self.show_frame(Disclaimer)
 
     def show_frame(self, cont):
-
         frame = self.frames[cont]
         frame.tkraise()
 ```
 
-You can see that I was most likely very closely following some tutorial, by the way that most of my constants are conventionally named except the `title`!
+It's glaringly obvious that I was closely tracing a tutorial, especially with most of my constants named so conventionally—except for the `title`, of course!
 
-The next thing that jumps out is my lack of awareness/understanding of `self`. The reason that there are several class attributes set to None which are then later set to the value I want (e.g. `Pymp.var1 = str_var1`) is that I didn't know I could just refer to `self` when dealing with instances of classes. I find this hilarious now, but it is quite an interesting approach, I suppose, that I think most likely evolved from bashing my head against error messages and furiously Googling (but not well enough, clearly!) until something worked! After a couple of tweaks (below) there is nothing _too_ smelly about this code I suppose (in isolation at least), but I don't remember enough about Tkinter to say for sure if I would do it any differently from this "fixed" version:
+Another glaring oversight was my lack of understanding regarding `self`. The reason I ended up with multiple class attributes set to `None`, only to later assign desired values (e.g. `Pymp.var1 = str_var1`), was purely due to my ignorance of simply using `self` when working with class instances. It’s amusing to think back on this now, though it’s an odd yet interesting approach to programming, surely born from a mix of trial and error and relentless Googling (clearly not enough of the latter!). After some tweaking (see the refactored code below), I believe there’s nothing inherently wrong with that initial version of the code, but I simply can’t recall enough about Tkinter to definitively say how I’d approach it differently now:
 
 ```python
 class Pymp(tk.Tk):
@@ -94,7 +93,10 @@ class Pymp(tk.Tk):
         frame.tkraise()
 ```
 
-I'm not sure when the idea of objects solidified itself in my head, but it was definitely something that I learnt about gradually, finally nailing all the pieces together when I read _Mastering Object-Oriented Python_ (Steven F Lott) a couple of years after the above example project was first cobbled together.
+It's hard to pinpoint exactly when the concept of objects truly took hold in my understanding, but it was a gradual journey leading to that eureka moment while reading [Mastering Object-Oriented Python by Steven F Lott](https://www.amazon.com/Mastering-Object-oriented-Python-Steven-Lott/dp/1783280972), a couple of years after I cobbled together that initial project.
 
-A big part of this was understanding the lifecycle of an object, and when different "dunder" methods are called, such as `__init__`, but also `__new__`, `__set_attr__`, `__set_attribute__` etc. and what they do, and how/why to override them in certain specific cases. Another fundamental thing I learnt about in this regard is Python's MRO, or Method Resolution Order, and how important this is when using mixins and multiple inheritance.
+A significant part of this learning curve involved grasping the lifecycle of an object, recognising when various “dunder” methods—like `__init__`, `__new__`, `__set_attr__`, and `__set_attribute__`—are invoked, and understanding when and why to override certain methods. I also delved into Python's Method Resolution Order (MRO) and its critical role when leveraging mixins and multiple inheritance.
 
+Another excellent and eye-opening book I read around the same time was [Clean Architectures in Python by Leo Geordiani](https://leanpub.com/clean-architectures-in-python) who was actually a colleague of mine at the time, and a huge source of inspiration.
+
+The most profound lesson I've learnt over these past four years? There is always more to learn!
