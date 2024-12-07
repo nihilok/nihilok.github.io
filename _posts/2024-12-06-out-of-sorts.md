@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Out of Sorts: Advent of Code 2024 Day 5"
-date: 2024-12-05
+date: 2024-12-06
 ---
 
 TL;DR: I failed miserably and resorted to cheating!

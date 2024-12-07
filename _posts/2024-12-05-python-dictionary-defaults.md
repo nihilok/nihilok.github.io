@@ -123,6 +123,6 @@ default_dict = defaultdict(default_factory)
 
 `dict.setdefault` and `defaultdict` are powerful tools that make working with dictionaries in Python less cumbersome. `setdefault` simplifies the handling of missing keys, while `defaultdict` takes care of default value management, resulting in clearer, more concise code.
 
-I often notice my colleagues getting caught out with standard dictionary methods when they could be using these tools, and just today, `defaultdict` came in really handy when attempting to solve [an Advent of Code puzzle (Day 5, 2024)]({% post_url 2024-12-05-out-of-sorts %}) which was what prompted me to write this post! 🎅
+I often notice my colleagues getting caught out with standard dictionary methods when they could be using these tools, and just today, `defaultdict` came in really handy when attempting to solve [an Advent of Code puzzle (Day 5, 2024)]({% post_url 2024-12-06-out-of-sorts %}) which was what prompted me to write this post! 🎅
 
 Embrace the full potential of Python dictionaries with `setdefault` and `defaultdict`, and you'll be using the word "Pythonic" to describe your code in no time! 🐍🔑
