@@ -62,7 +62,7 @@ def parse_input(puzzle_input):
     return pages_before, lines
 ```
 
-I was pretty proud of the use of `defaultdict`, which immediately sprang to mind when I saw that the values would be lists. See [this post](https://nihilok.github.io/blog/2024/12/05/python-dictionary-defaults.html) which I composed as a result of how pleased with myself I was! I'll skip over part 1 as it was pretty trivial and jump straight into part 2. I was able to get this far pretty quickly:
+I was pretty proud of the use of `defaultdict`, which immediately sprang to mind when I saw that the values would be lists. See [this post]({% post_url 2024-12-05-python-dictionary-defaults %}) which I composed as a result of how pleased with myself I was! I'll skip over part 1 as it was pretty trivial and jump straight into part 2. I was able to get this far pretty quickly:
 
 
 ```python
