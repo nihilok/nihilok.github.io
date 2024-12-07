@@ -110,7 +110,7 @@ for p in pages.split():
 print(*a)
 ```
 
-Notice there is no "clever" use of `defaultdict` here! After several rereads(!) I was eventually able to fully understand the solution and adapt it to my own code without changing anything I'd already done, which I'm counting as a win! Where the above solution generates the sort key using the input in it's original format, I had already parsed the input into a dict, so I just needed to adapt the lambda function to use my dictionary of pages that must come before the key:
+Notice there is no "clever" use of `defaultdict` here... in fact there's barely any code at all! After several rereads I was eventually able to fully understand the solution and adapt it to my own code without changing anything I'd already done, which I'm counting as a win! Where the above solution generates the sort key using the input in it's original format, I had already parsed the input into a dict, so I just needed to adapt the lambda function to use my dictionary of pages that must come before the key:
 
 ```python
 def sort_key(x):
