@@ -7,7 +7,7 @@ date: 2024-12-04
 
 So, it's been a year since my last post! Damned work and ADHD getting in the way. That said, I've learnt a great deal in the past year: started following an AWS Developer Associate course, before distractions got the better of me and I decided to go it alone. Flailing wildly in the dark, and armed with the fragments of knowledge I've learnt on the job, I managed to come up with a pretty neat (albeit legally questionable) app that downloads and extracts MP3s from Youtube and other streaming services, that utilised 2 separate AWS Lambdas and SNS, as well as DynamoDB and the Python Telegram Bot SDK. Check out the code [here](https://github.com/nihilok/dlbot-micro). Unfortunately, YouTube very quickly started blocking AWS IPs from accessing their API, even when logged in with my premium account, so I had to take a step back and [rewrite the app](https://github.com/nihilok/dlbot-local) to run on a single server which I can just run on a local machine.
 
-Anyway, enough about my coding adventures – let me show you this bash script I've been tinkering with that's basically my love letter to server security. 
+Anyway, enough about my coding adventures – let me show you this bash script I've been tinkering with that's basically my love letter to server security.
 
 We've all been there: you spin up a new server, and it's about as secure as a chocolate padlock, and there's so many different things I find myself having to remember/read how to do every time. Enter my ridiculously over-engineered bash script that's basically a bouncer for your SSH config, kicking out password authentication and root logins faster than you can say "cybersecurity", and it does all this with some pretty slick bash kung-fu that'll make even seasoned sysadmins do a double-take.
 
@@ -188,6 +188,6 @@ chmod +x disable-password-and-root-login-ssh.sh
 sudo ./disable-password-and-root-login-ssh.sh
 ```
 
-Is it overkill? Maybe. Was it fun to write? Absolutely. 
+Is it overkill? Maybe. Was it fun to write? Absolutely (with some help from Claude.ai 🙈)!
 
 Catch you in another year when I've got more random tech shenanigans to share! 🚀🔒
