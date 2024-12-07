@@ -6,7 +6,7 @@ date: 2024-12-07
 
 <img src="./assets/warehouse-robotics-hero-image.jpg" alt="Warehouse Robot" style="width:100%;">
 
-Yesterday's Advent of Code puzzle transported me back in time, triggering a wave of memories from a pivotal moment in my programming journey. The Day 6 challenge was eerily similar to the Warehouse Robot problem that once brought me to my knees during a job interview four years ago – a moment that now feels like a distant, yet formative memory.
+Yesterday's Advent of Code puzzle transported me back in time, triggering a wave of memories from a pivotal moment in my programming journey. [The Day 6 challenge](https://adventofcode.com/2024/day/6) was eerily similar to the Warehouse Robot problem that once brought me to my knees during a job interview four years ago – a moment that now feels like a distant, yet formative memory.
 
 I remember sitting there, a beginner programmer brimming with ambition but lacking the nuanced understanding of problem-solving. In my eagerness to impress, I immediately dove into creating unnecessarily complex Python Abstract Base Classes (ABCs), effectively building an elaborate house of cards when what was needed was a simple, sturdy foundation. It's a classic rookie mistake – trying to run before learning to walk, attempting to showcase sophistication instead of clarity.
 
