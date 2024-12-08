@@ -6,7 +6,7 @@ date: 2024-12-07
 
 <img src="./assets/warehouse-robotics-hero-image.jpg" alt="Warehouse Robot" style="width:100%;">
 
-Yesterday's Advent of Code puzzle transported me back in time, triggering a wave of memories from a pivotal moment in my programming journey. [The Day 6 challenge](https://adventofcode.com/2024/day/6) was eerily similar to the Warehouse Robot problem that once brought me to my knees during a job interview four years ago – a moment that now feels like a distant, yet formative memory.
+Yesterday's Advent of Code puzzle transported me back in time, triggering a wave of memories from a pivotal moment in my programming journey. [The Day 6 challenge](https://adventofcode.com/2024/day/6) was eerily similar to the Warehouse Robot problem that once brought me to my knees during a job interview nearly four years ago – a moment that now feels like a distant, yet formative memory.
 
 I remember sitting there, a beginner programmer brimming with ambition but lacking the nuanced understanding of problem-solving. In my eagerness to impress, I immediately dove into creating unnecessarily complex Python Abstract Base Classes (ABCs), effectively building an elaborate house of cards when what was needed was a simple, sturdy foundation. It's a classic rookie mistake – trying to run before learning to walk, attempting to showcase sophistication instead of clarity.
 
@@ -14,7 +14,7 @@ My interviewer, Leonardo Giordani – an incredible mentor whose books on progra
 
 My disappointment at not completing the problem was overwhelming. Instead of letting it defeat me, I channeled that energy into a marathon coding session, spending the entire day and night refining my solution. The next morning, I meticulously packaged my work into a GitHub gist and sent it off, hoping for some insight.
 
-Weeks – or was it months? – passed in silence. When Leo finally responded, it wasn't with the detailed critique I had anticipated, but with a brief note. He apologized for the delay, mentioned that he'd quickly reviewed the solution and found it "fine," but most importantly, had recommended me for the position (which I am still currently in 3 years later) immediately after the interview. His reasoning? Not the technical perfection I had obsessed over, but my evident passion and determination.
+Weeks – or was it months? – passed in silence. When Leo finally responded, it wasn't with the detailed critique I had anticipated, but with a brief note. He apologized for the delay, mentioned that he'd quickly reviewed the solution and found it "fine," but most importantly, had recommended me for the position (which I am still currently in over three years later) immediately after the interview. His reasoning? Not the technical perfection I had obsessed over, but my evident passion and determination.
 
 This wasn't an isolated incident. Throughout my journey to secure my first technical role, I encountered multiple interviewers who were more than just evaluators – they were educators. Each interview, whether successful or not, was a masterclass in technical and personal growth. The rejections weren't failures, but stepping stones, each one adding a layer of knowledge and resilience.
 
