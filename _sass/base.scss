@@ -1,5 +1,5 @@
 /*
-   original: https://github.com/pages-themes/hacker 
+   original: https://github.com/pages-themes/hacker
 */
 
 @import "rouge-base16-dark";
@@ -160,6 +160,31 @@ pre {
   text-wrap: normal;
   overflow: auto;
   overflow-y: hidden;
+}
+
+pre > code {
+  padding-right: calc(4ch + 10px);
+}
+
+.copy-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #b5e853;
+  border-radius: 2px;
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+
+.copy-button:hover {
+  opacity: 1;
+}
+
+.highlight {
+position: relative;
 }
 
 code.highlighter-rouge {

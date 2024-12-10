@@ -42,9 +42,36 @@
   </div>
   {% endif %} {% include footer.html %}
 
-  {% if site.google_analytics %}
-    {% include analytics.html %}
-  {% endif %}
+  <script type="text/javascript">
+    // Function to create a copy button for each <pre><code> element
+    function injectCopyButtons() {
+	const codeBlocks = document.querySelectorAll('pre > code'); // Select all <pre> elements
+
+    	codeBlocks.forEach(code => {
+    	    // Create a button element
+	    code.style.position = "relative";
+    	    const button = document.createElement('button');
+    	    button.innerText = 'Copy';
+	    button.classList.add('copy-button');
+    	    // Add click event to copy text to clipboard
+    	    button.addEventListener('click', () => {
+    	        // Select the text in the code block
+		const textToCopy = code.innerText;
+    	        navigator.clipboard.writeText(textToCopy).then(() => {
+    	            alert('Code copied to clipboard!');
+    	        }).catch(err => {
+    	            console.error('Failed to copy: ', err);
+    	        });
+    	    });
+
+    	    // Append the button to the <pre> element
+	    code.parentNode.parentNode.appendChild(button);
+    	});
+    }
+
+    // Run the function to inject copy buttons
+    injectCopyButtons();
+  </script>
 </body>
 
 </html>
