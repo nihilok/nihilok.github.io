@@ -8,7 +8,7 @@ TODAY=$(date +%Y-%m-%d)
 
 # Check if we're in the root directory of the Jekyll site by looking for the _posts directory, or if we're inside the _posts directory and create an absolute path accordingly
 if [ -d "_posts" ]; then
-  	POSTS_DIR="${PWD}_posts"
+  	POSTS_DIR="${PWD}/_posts"
 elif [ -d "../_posts" ]; then
 	POSTS_DIR="${PWD}"
 else
