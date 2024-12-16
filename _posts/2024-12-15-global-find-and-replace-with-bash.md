@@ -15,7 +15,7 @@ This command will find all standard files (`-type f`) in the specified directory
 We can improve performance even further by using the `xargs` command:
 
 ```bash
-find /etc/. -type f -print0 | xargs -0 sed -i "s/old-text/new-text/g"
+find /path/to/files -type f -print0 | xargs -0 sed -i "s/old-text/new-text/g"
 ```
 
 This command will also find all standard files in the specified directory, print them with a null character separator, and then pass them to `xargs` which will run the `sed` command on each file. The `-0` flag tells `xargs` to use the null character as the separator, which is useful for dealing with files that have spaces or special characters in their names.
@@ -42,4 +42,26 @@ Save this script as `global_replace.sh` and make it executable with `chmod +x gl
 ./global_replace.sh /path/to/files "Some text" "Some other text"
 ```
 
-This will replace all instances of "Some text" with "Some other text" in the files in the specified directory which contained the text "Some text" (any other files will be ignored). Happy scripting!
+This will replace all instances of "Some text" with "Some other text" in the files in the specified directory which contained the text "Some text" (any other files will be ignored).
+
+## Do we even need to use `find`?
+
+If you're using `sed` to replace text in files, you can use the `sed` command itself to specify the files you want to operate on. For example:
+
+```bash
+sed -i 's/old-text/new-text/g' /path/to/files/*
+```
+
+This command will replace all instances of "old-text" with "new-text" in all files in the specified directory. You can also use wildcards to specify a subset of files. However, be careful when using wildcards, as they can match files you didn't intend to operate on, including special files like sockets and symlinks. Using `find` is a safer way to target specific files.
+
+We could use `grep` to find the files we want to operate on, and then pass the list of files to `sed`:
+
+```bash
+grep -lR "old-text" /path/to/files | xargs sed -i 's/old-text/new-text/g'
+```
+
+This command will use `grep` to search for the text "old-text" in all files in the specified directory and its subdirectories, and then pass the list of files to `sed` to replace the text. The `-l` flag tells `grep` to only print the names of the files that contain the text, and the `-R` flag tells `grep` to search recursively through the directory. Again though, we need to be careful when using this command, as it can match files you didn't intend to operate on.
+
+## Conclusion
+
+There are several ways to do a global find and replace in files using bash, but the `find` command is a safe and reliable method of targeting specific files. The `sed` command is a powerful tool for text manipulation, and when combined with `find` or `grep`, it can be used to quickly and efficiently replace text in multiple files. Be careful when using these commands, especially when using the `-i` flag with `sed`, as it will edit the files in place and can't be undone. Always make sure to run commands in a testing/staging environment before using them in the wild, and/or back up your files before running any commands that modify them. Happy scripting!
