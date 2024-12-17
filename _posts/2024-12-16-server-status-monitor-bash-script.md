@@ -50,7 +50,7 @@ while true; do
 		server_hostname=$(echo $server_hostname | tr -d '\r')
 
         if [[ $server_hostname == http* ]]; then
-            curl -s -o /dev/null -w "%{http_code}" "$server_hostname" | grep -E '(000|501)' &>/dev/null
+            curl -s -o /dev/null -w "%{http_code}" "$server_hostname" | grep -E '(000|404)' &>/dev/null
             if [ $? -eq 0 ]; then
                 tput setaf 1
                 echo "Server: $server_hostname is down - $(date)" | tee -a /var/log/server_status.log
@@ -108,7 +108,7 @@ The script supports two types of server checks:
 ping -c 1 "$server_hostname" | grep -E '(Destination Host Unreachable|100% packet loss)' &>/dev/null
 
 # For web servers (URLs)
-curl -s -o /dev/null -w "%{http_code}" "$server_hostname" | grep -E '(000|501)' &>/dev/null
+curl -s -o /dev/null -w "%{http_code}" "$server_hostname" | grep -E '(000|404)' &>/dev/null
 ```
 
 This dual approach allows monitoring of both network-level connectivity for traditional servers and HTTP availability for web services.
