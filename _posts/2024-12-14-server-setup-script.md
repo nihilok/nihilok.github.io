@@ -4,7 +4,7 @@ title: "Server setup script"
 date: 2024-12-14
 ---
 
-Building on [a previous post]({% post_url 2024-12-04-so-its-been-a-year %}), here is a script that automates the setup of a server. This script installs and configures various components such as Nginx, Let's Encrypt SSL certificates, Fail2ban, UFW, and more. It also provides an option to disable password authentication and root login via SSH for added security.
+Building on [a previous post]({% post_url 2024-12-04-so-its-been-a-year %}), here is a script that automates the setup of a server. When setting up a  new server there are several things that I either do by default (on autopilot) or I forget to do. This script installs and configures various components such as `nginx`, `certbot` for Let's Encrypt SSL certificates, `fail2ban`, `ufw`, and more. It also provides an option to disable password authentication and root login via SSH for added security. Here's the script in full:
 
 ```bash
 #!/usr/bin/env bash
