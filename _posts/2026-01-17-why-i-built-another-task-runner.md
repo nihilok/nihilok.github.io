@@ -115,9 +115,11 @@ Now Claude (or any MCP-compatible agent) knows exactly what this tool does and h
 
 It's a single Rust binary. No runtime. No package.json with 500 dependencies. You run `run deploy staging` and it just works.
 
+And it comes with shell completions out of the box — bash, zsh, fish, and PowerShell. Tab completion for all your tasks, no extra setup required.
+
 ## Is This Useful to Anyone Else?
 
-I don't know. Maybe you're happy with Make. Maybe Just works perfectly for you. Maybe your npm scripts are fine. Maybe you've never had a coworker ask you about cryptic variable substitution syntax.
+I don't know. Maybe you're happy with Make. Maybe Just works perfectly for you. Maybe your npm scripts are fine. Maybe you've never had a coworker ask you about cryptic variable substitution syntax. Maybe you don't care that your AI agent doesn't always nail a command first time.
 
 But if you've ever thought "there has to be a simpler way to do this," maybe give it a try:
 
