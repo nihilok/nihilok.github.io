@@ -127,4 +127,10 @@ But if you've ever thought "there has to be a simpler way to do this," maybe giv
 brew install nihilok/tap/runfile
 ```
 
+or
+
+```bash
+cargo install run
+```
+
 The code is on [GitHub](https://github.com/nihilok/run). It solves my problems. Maybe it'll solve yours too.
