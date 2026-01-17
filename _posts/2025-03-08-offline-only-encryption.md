@@ -4,20 +4,20 @@ title: "Offline Encryption Using WebAuthn"
 date: 2025-03-08
 ---
 
-I've been diving deep into browser-based cryptography lately, and let me tell you, implementing truly secure offline encryption is about as straightforward as teaching quantum physics to a goldfish. The core problem? Getting consistent key material across sessions without storing anything sensitive.
+I've been diving deep into browser-based cryptography lately, and implementing truly secure offline encryption is frustratingly complex. The core problem? Getting consistent key material across sessions without storing anything sensitive.
 
-After countless late nights of cursing at my keyboard and several "why am I doing this to myself" moments, I stumbled upon an intriguing solution: leveraging WebAuthn (e.g. those little USB security keys like YubiKey) not just for authentication, but as a source of encryption key material.
+After countless late nights of cursing at my keyboard, I stumbled upon an intriguing solution: using WebAuthn (e.g. those little USB security keys like YubiKey) not just for authentication, but as a source of encryption key material.
 
 ## The Encryption Challenge
 
-Let's be real - creating secure encryption that works completely offline in a browser environment is a nightmare for several reasons:
+Creating secure encryption that works completely offline in a browser environment is difficult for several reasons:
 
 - Your key material needs to be consistent across browser sessions
 - You can't just derive keys from code (that's basically security through obscurity)
-- Browser storage is about as secure as a paper lock on a bank vault
-- And of course, the whole thing needs to work offline (otherwise, what's the point?)
+- Browser storage isn't secure enough for sensitive key material
+- And of course, the whole thing needs to work offline
 
-After banging my head against various approaches (including some truly questionable experiments with IndexedDB), I realized WebAuthn might be the perfect solution. Why? Because those little hardware authenticators never expose their private keys - they're basically tiny HSMs that live in your USB port!
+After banging my head against various approaches (including some truly questionable experiments with IndexedDB), I realised WebAuthn might be the perfect solution. Why? Because those little hardware authenticators never expose their private keys — they're basically tiny HSMs that live in your USB port!
 
 ## WebAuthn: Not Just for Logins Anymore
 
@@ -32,7 +32,7 @@ Here's how it works in a nutshell:
 
 The real magic here is that for a given credential and challenge, the hardware authenticator will produce a signature that we can use as key material. The private key never leaves the device!
 
-## Show Me the Code!
+## Implementation
 
 Here's how to implement the registration phase:
 
@@ -129,7 +129,7 @@ Some authenticators don't produce deterministic signatures for the same input. T
 
 This means that your key material might change slightly between uses. Not ideal for encryption!
 
-Enter the **fuzzy extractor** - a cryptographic primitive that takes "noisy" input and reliably produces consistent output. It's like having a friend who always tells the same version of a story, even when you keep changing the details slightly each time.
+The solution is a **fuzzy extractor** — a cryptographic primitive that takes "noisy" input and reliably produces consistent output.
 
 A typical fuzzy extractor has two phases:
 1. **Generate**: Takes initial input, produces a key and a "helper"
@@ -137,7 +137,7 @@ A typical fuzzy extractor has two phases:
 
 ## Security Considerations: The JavaScript Memory Problem
 
-Let's talk about the elephant in the room: JavaScript memory.
+One important consideration: JavaScript memory.
 
 Since all your variables in JavaScript are potentially accessible to attackers with debugging capabilities, your signature values could be exposed if someone can run a debugger or inject code through XSS.
 

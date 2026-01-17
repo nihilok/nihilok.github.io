@@ -4,15 +4,13 @@ title: "Why I Built Another Task Runner"
 date: 2026-01-17
 ---
 
-# Why I Built Another Task Runner
-
-Yes, I know. Another task runner. In 2025. Hear me out.
+Yes, I know. Another task runner. In 2025. Let me explain why.
 
 ## The Problem
 
 I'm not a Make expert. But somehow I became the person people ask when they need to add a task to our Makefile.
 
-Last week it was "How do I pass an environment variable to this target?" The week before: "Why does this only work if I add a tab character?" And the week before that it was me forgetting to add a task to `.PHONY`. 
+Last week it was "How do I pass an environment variable to this target?" The week before: "Why does this only work if I add a tab character?" And the week before that it was me forgetting to add a task to `.PHONY`.
 
 Every time, I'm Googling the same things they could be Googling. Our build process has things like this:
 
@@ -51,12 +49,13 @@ deploy() {
 ```
 
 But I also wanted:
+
 - Python when I needed real logic (not bash's string manipulation nightmare)
 - Node when working with JSON or async operations
 - Cross-platform support without conditional hell
 - Something AI agents could actually use (more on this in a moment)
 
-## Enter `run`
+## So I Built `run`
 
 So I built [run](https://runfile.dev). A Runfile looks like this:
 
@@ -94,11 +93,11 @@ deploy() {
 
 No YAML. No TOML. No `$(word 2,$(subst -, ,$@))`. Just functions.
 
-## The AI Angle
+## The AI Integration
 
-Here's where it gets interesting, perhaps: `run` has a built-in MCP (Model Context Protocol) server.
+Here's where it gets interesting: `run` has a built-in MCP (Model Context Protocol) server.
 
-I was pairing with Claude on some refactoring when I realised: it would be helpful if Claude could just run our tests or deployment checks directly. With MCP support, AI agents can discover and execute your project's tools automatically.
+I was pairing with Claude Code on some refactoring (_it_ was driving 🙈) when I realised: it would be helpful if Claude could just run our tests or deployment checks directly. With MCP support, AI agents can discover and execute your project's tools automatically, and use the exact same tools that you use.
 
 Add some metadata:
 
@@ -110,7 +109,7 @@ deploy() {
 }
 ```
 
-Now Claude (or any MCP-compatible agent) knows exactly what this tool does and how to use it.
+Now Claude (or any MCP-compatible agent) knows exactly what this tool does and how to use it. No more guessing or multi-step process towards working out the correct commands; and no verbose Markdown explanations needed.
 
 ## Zero Dependencies, Instant Startup
 
@@ -127,7 +126,3 @@ brew install nihilok/tap/runfile
 ```
 
 The code is on [GitHub](https://github.com/nihilok/run). It solves my problems. Maybe it'll solve yours too.
-
----
-
-*What task runner do you use? What do you wish it did better? I'd genuinely love to hear about it.*
