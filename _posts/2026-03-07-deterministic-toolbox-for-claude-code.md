@@ -61,7 +61,7 @@ Add `run` as an MCP server in your Claude Code config:
 ```json
 {
   "mcpServers": {
-    "run": {
+    "runtool": {
       "command": "run",
       "args": ["--serve-mcp"]
     }
@@ -96,7 +96,7 @@ Claude Code: I'll look for how to run tests in this project.
 Human: run the tests
 
 Claude Code: I'll run the test suite.
-  [tool] mcp:run test                             → success
+  [tool] mcp:runtool test                          → success
 
   Total: 1 tool call, ~100 tokens of context consumed
   Next session: same tool registry, same result
