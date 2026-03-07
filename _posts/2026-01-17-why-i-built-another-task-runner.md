@@ -43,7 +43,7 @@ So I looked at the established alternatives.
 
 **Task (go-task)** (~15k stars) impressed me with its built-in POSIX shell interpreter, which gives genuinely consistent cross-platform behaviour without relying on the system shell. But it's shell-only — no inline Python or Node.js. And MCP support is still just a GitHub issue with no implementation.
 
-**Mise** (~25k stars) is arguably the most feature-rich tool in this space, but it's primarily a dev tool version manager (replacing asdf/nvm/pyenv). The task runner is a secondary feature. It does have an experimental `mise mcp` server, which is genuinely interesting — but MCP is exposing the broader dev environment rather than being optimised specifically for task execution.
+**Mise** (~25k stars) is arguably the most feature-rich tool in this space, combining dev tool version management (replacing asdf/nvm/pyenv), environment management, and task running in a single binary. It does have an experimental `mise mcp` server, which is genuinely interesting — though it exposes the broader dev environment surface rather than being focused specifically on task execution. For teams already using mise for version management, that breadth is a strength.
 
 The Markdown-based runners — **Mask**, **xc**, **Maid** — are a compelling idea (documentation and automation in one file), but none of them have any MCP story, and Maid hasn't been meaningfully maintained in years.
 
@@ -105,9 +105,27 @@ deploy(environment) {
 
 No YAML. No TOML. No `$(word 2,$(subst -, ,$@))`. Just functions with named parameters.
 
-Notice how the Python function gets `file` as a native Python variable — no `sys.argv[1]` needed. RunTool automatically converts parameter types for polyglot functions, so an `int` parameter in a Python shebang function arrives as an actual Python `int`.
+### Polyglot Argument Passing
 
-The polyglot model is worth dwelling on. Just supports multiple languages too, via shebangs — but each shebang recipe has to be a separate named recipe. RunTool lets you mix languages within a single file using function-scoped shebangs. And the `@os` attribute lets you define the *same function name* with different implementations per platform, which is more ergonomic than Task's `platforms` filter or mise's `run_windows` property.
+The polyglot model is worth dwelling on — even if you never touch the AI features, this alone is a meaningful improvement over existing tools.
+
+Notice how the Python function above gets `file` as a native Python variable — no `sys.argv[1]`, no `argparse`, no parsing. And it goes further than just strings. If you add a type annotation:
+
+```bash
+resize(file, width: int, height: int) {
+    #!/usr/bin/env python
+    from PIL import Image
+    img = Image.open(file)
+    img.resize((width, height)).save(file)
+    print(f"Resized to {width}x{height}")
+}
+```
+
+`width` and `height` arrive as actual Python `int`s. You can multiply them, pass them to APIs that expect numbers, use them in range expressions — no `int(sys.argv[2])` boilerplate. The same applies to Node.js, Ruby, and PowerShell: RunTool generates the appropriate variable declarations for each interpreter, with type-correct values.
+
+Compare this to the typical polyglot task runner experience: you write a shebang script, and everything arrives as a string. You spend the first few lines of every script parsing and converting arguments. It's not a lot of code, but it's friction — and it's the kind of friction that makes people reach for a full CLI framework instead of a quick task.
+
+Just supports multiple languages too, via shebangs — but each shebang recipe has to be a separate named recipe. RunTool lets you mix languages within a single file using function-scoped shebangs. And the `@os` attribute lets you define the *same function name* with different implementations per platform, which is more ergonomic than Task's `platforms` filter or mise's `run_windows` property.
 
 ## The AI Integration
 
@@ -152,7 +170,7 @@ As of early 2026, the landscape looks like this:
 | **xc** | ❌ Shell-only | ⚠️ Inputs attribute | ❌ None |
 | **Make** | ❌ Shell (with quirks) | ❌ None | ⚠️ Third-party only |
 
-RunTool and mise are the only tools with built-in MCP servers. The difference is focus: mise's MCP server exposes its full environment management surface (tools, tasks, versions, env vars); RunTool's is purpose-built around task execution and structured argument metadata.
+RunTool and mise are the only tools with built-in MCP servers. The difference is scope: mise's MCP server exposes its full environment management surface (tools, tasks, versions, env vars), which is powerful if you want an agent that can manage your entire dev environment. RunTool's is narrower by design — purpose-built around task execution and structured argument metadata — which means less surface area to audit and a simpler mental model for what the agent can do.
 
 ## Zero Dependencies, Instant Startup
 
@@ -168,7 +186,7 @@ I'd be doing you a disservice if I didn't acknowledge what the alternatives have
 
 **Task** has something technically impressive that's easy to overlook: its built-in shell interpreter (mvdan/sh) plus built-in Unix utilities means it's genuinely cross-platform without platform-specific shims. If your team has Windows developers and you've suffered through shell compatibility issues, that's a compelling argument.
 
-**Mise** bundles tool version management, environment management, and task running into a single binary — reducing the number of tools a project depends on. If you're already using mise for version management, its experimental MCP support and rich task runner make it the most comprehensive single-binary solution.
+**Mise** bundles tool version management, environment management, and task running into a single binary — reducing the number of tools a project depends on. If you're already using mise for version management, its experimental MCP support and rich task runner make it the most comprehensive single-binary solution. And its broader MCP surface area is genuinely useful if you want agents that can manage your full dev environment, not just run tasks.
 
 RunTool is a new entrant betting that AI-agent interoperability will become a first-class concern for developer tooling. That bet might be right or wrong. What I can say is: when I'm working alongside Claude Code on a project and it can discover and run the project's tasks through the same interface I do, that workflow genuinely changes how I work.
 
@@ -176,7 +194,7 @@ RunTool is a new entrant betting that AI-agent interoperability will become a fi
 
 I don't know. Maybe you're happy with Make. Maybe Just works perfectly for you. Maybe mise already does everything you need. Maybe you don't care whether your AI agent can introspect your task arguments.
 
-But if you've ever thought "there has to be a simpler way to do this," and you're working in an AI-assisted workflow, maybe give it a try:
+But if you've ever thought "there has to be a simpler way to do this" — whether that's passing typed arguments to a Python task without `argparse`, writing cross-platform tasks without conditional hell, or giving your AI agent access to your project's tools — maybe give it a try:
 
 ```bash
 brew install nihilok/tap/runfile
