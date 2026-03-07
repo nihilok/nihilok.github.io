@@ -10,7 +10,7 @@ You ask it to run the tests. It reads your README. Maybe it finds a `Makefile`, 
 
 This is the discovery tax. Every Claude Code session pays it, and it compounds: each failed attempt burns context window, each retry eats tokens, and the agent's confidence degrades as it accumulates error messages. On a long session where you're already bumping up against context limits, those wasted tokens matter.
 
-I built a tool called [run](https://runfile.dev) that fixes this. Here's how.
+I built a tool called [run](https://runtool.dev) that fixes this. Here's how.
 
 ## The problem isn't intelligence, it's discovery
 
@@ -28,7 +28,7 @@ Each of these steps consumes tool calls and context. And because there's no stru
 
 MCP (Model Context Protocol) lets you expose tools to AI agents with structured schemas — name, description, typed parameters, defaults. The agent doesn't discover tools by reading files; it discovers them through a protocol designed for exactly this purpose.
 
-[RunTool](https://runfile.dev) is a task runner with a built-in MCP server. You define your project's tasks in a `Runfile`:
+[RunTool](https://runtool.dev) is a task runner with a built-in MCP server. You define your project's tasks in a `Runfile`:
 
 ```
 # @desc Run the full test suite

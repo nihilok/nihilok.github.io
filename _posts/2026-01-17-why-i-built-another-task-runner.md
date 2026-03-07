@@ -69,7 +69,7 @@ That last point turned out to be the gap nobody had filled properly.
 
 ## So I Built `run`
 
-So I built [run](https://runfile.dev). A Runfile looks like this:
+So I built [run](https://runtool.dev). A Runfile looks like this:
 
 ```bash
 # Shell for simple stuff
