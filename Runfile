@@ -11,5 +11,40 @@ new_post(title) {
     print(filename)
 }
 
+# @desc Create a new draft (not published until promoted)
+# @arg title The draft title
+new_draft(title) {
+    #!/usr/bin/env python
+    import re, os
+    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+    filename = f"_drafts/{slug}.md"
+    os.makedirs("_drafts", exist_ok=True)
+    with open(filename, "w") as f:
+        f.write(f'---\nlayout: post\ntitle: "{title}"\n---\n\n')
+    print(filename)
+}
+
+# @desc Publish a draft to _posts with today's date
+# @arg draft Filename of the draft in _drafts (e.g. my-post.md)
+publish(draft) {
+    #!/usr/bin/env python
+    from datetime import date
+    from pathlib import Path
+    src = Path("_drafts") / draft
+    if not src.exists():
+        print(f"Draft not found: {src}")
+        raise SystemExit(1)
+    dest = Path("_posts") / f"{date.today()}-{draft}"
+    content = src.read_text()
+    # Add date to front matter
+    content = content.replace("---\n", f"---\ndate: {date.today()}\n", 1)
+    dest.write_text(content)
+    src.unlink()
+    print(f"{src} → {dest}")
+}
+
+# @desc List all drafts
+drafts() ls -1 _drafts/ 2>/dev/null || echo "No drafts"
+
 # @desc List all posts (most recent first)
 posts() ls -1r _posts/
