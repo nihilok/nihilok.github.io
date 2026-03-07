@@ -127,6 +127,8 @@ Now Claude (or any MCP-compatible agent) knows exactly what this tool does and h
 
 The `@desc` and `@arg` annotations serve dual purposes: they generate human-readable help text *and* provide structured metadata that MCP clients use for tool discovery and invocation. That's architecturally different from Just's approach, where three independent community-built MCP servers have to parse the justfile format externally without any structured argument metadata to work with.
 
+There's a useful security property here too: the MCP server only exposes the annotations — the function name, description, and argument signatures. The implementation is not surfaced. An agent knows that `deploy` takes an `environment` argument of type string; it doesn't know (or need to know) that internally it shells out to `./scripts/deploy.sh`, or that there's a secrets file being sourced, or any other implementation detail. If the agent wants to read the Runfile itself it can, but that's an explicit read operation — not something the MCP server hands over automatically. You can give agents access to your tooling without giving them a map of your internals.
+
 As of early 2026, the landscape looks like this:
 
 | Tool | Polyglot scripting | Typed arguments | MCP integration |
