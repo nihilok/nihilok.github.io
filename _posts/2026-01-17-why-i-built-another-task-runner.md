@@ -53,8 +53,8 @@ I wanted to write tasks the way I think about them:
 
 ```bash
 # Just deploy the thing
-deploy() {
-    ./scripts/deploy.sh $1
+deploy(environment) {
+    ./scripts/deploy.sh $environment
 }
 ```
 
@@ -76,10 +76,10 @@ So I built [run](https://runfile.dev). A Runfile looks like this:
 build() cargo build --release
 
 # Python when you need it
-analyze() {
+analyze(file) {
     #!/usr/bin/env python
-    import json, sys
-    with open(sys.argv[1]) as f:
+    import json
+    with open(file) as f:
         data = json.load(f)
         print(f"Processed {len(data)} records")
 }
@@ -93,17 +93,19 @@ process() {
 
 # Platform-specific versions
 # @os windows
-deploy() {
-    .\scripts\deploy.ps1 $1
+deploy(environment) {
+    .\scripts\deploy.ps1 $environment
 }
 
 # @os linux darwin
-deploy() {
-    ./scripts/deploy.sh $1
+deploy(environment) {
+    ./scripts/deploy.sh $environment
 }
 ```
 
-No YAML. No TOML. No `$(word 2,$(subst -, ,$@))`. Just functions.
+No YAML. No TOML. No `$(word 2,$(subst -, ,$@))`. Just functions with named parameters.
+
+Notice how the Python function gets `file` as a native Python variable — no `sys.argv[1]` needed. RunTool automatically converts parameter types for polyglot functions, so an `int` parameter in a Python shebang function arrives as an actual Python `int`.
 
 The polyglot model is worth dwelling on. Just supports multiple languages too, via shebangs — but each shebang recipe has to be a separate named recipe. RunTool lets you mix languages within a single file using function-scoped shebangs. And the `@os` attribute lets you define the *same function name* with different implementations per platform, which is more ergonomic than Task's `platforms` filter or mise's `run_windows` property.
 
@@ -117,13 +119,22 @@ Add some metadata:
 
 ```bash
 # @desc Deploy to specified environment
-# @arg 1:environment string Target environment (staging|prod)
-deploy() {
-    ./scripts/deploy.sh $1
+# @arg environment Target environment (staging|prod)
+deploy(environment) {
+    ./scripts/deploy.sh $environment
 }
 ```
 
-Now Claude (or any MCP-compatible agent) knows exactly what this tool does and how to use it. No more guessing or multi-step process towards working out the correct commands; and no verbose Markdown explanations needed.
+The function signature *is* the schema. Claude (or any MCP-compatible agent) sees a tool called `deploy` with a required `environment` parameter — no guessing, no multi-step discovery, no verbose Markdown explanations needed. Type annotations and defaults work too:
+
+```bash
+# @desc Scale a service
+# @arg service The service name
+# @arg replicas Number of instances
+scale(service, replicas: int = 1) {
+    docker compose scale $service=$replicas
+}
+```
 
 The `@desc` and `@arg` annotations serve dual purposes: they generate human-readable help text *and* provide structured metadata that MCP clients use for tool discovery and invocation. That's architecturally different from Just's approach, where three independent community-built MCP servers have to parse the justfile format externally without any structured argument metadata to work with.
 
@@ -133,7 +144,7 @@ As of early 2026, the landscape looks like this:
 
 | Tool | Polyglot scripting | Typed arguments | MCP integration |
 |---|---|---|---|
-| **RunTool** | ✅ Shell/Python/Node/Ruby/PS | ✅ `@arg` with types | ✅ Built-in |
+| **RunTool** | ✅ Shell/Python/Node/Ruby/PS | ✅ Signature types + defaults | ✅ Built-in |
 | **Just** | ✅ Via shebangs | ⚠️ Params, no types | ⚠️ 3 third-party servers |
 | **Task** | ❌ Shell-only | ⚠️ `requires` + enum | ❌ Requested only |
 | **Mise** | ✅ Via shebangs | ✅ usage spec | ✅ Built-in (experimental) |
