@@ -4,7 +4,9 @@ date: 2024-12-05
 ---
 
 
-Playing around with my [assistants library](https://github.com/nihilok/assistants) today, under the guise of Eric Cartman, it came up with an algorithm for the perfect cheesy poofs recipe.
+I've been building an open-source framework called [**assistants**](https://github.com/nihilok/assistants) — a Python library for creating AI assistants with multiple frontend interfaces (CLI and Telegram), support for multiple LLM providers (OpenAI, Anthropic, Mistral), and features like MCP tool integration, code highlighting, thread management, and image generation. You can install it with `pip install assistants-framework`.
+
+Playing around with it today, under the guise of Eric Cartman, it came up with an algorithm for the perfect cheesy poofs recipe.
 
 ![Cheesy Poofs](https://content.instructables.com/FI4/8HUI/H5F2YZIJ/FI48HUIH5F2YZIJ.jpg?auto=webp&fit=bounds&frame=1&width=620)
 
