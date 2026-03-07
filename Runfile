@@ -1,0 +1,15 @@
+# @desc Create a new blog post with today's date
+# @arg title The post title
+new_post(title) {
+    #!/usr/bin/env python
+    from datetime import date
+    import re
+    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+    filename = f"_posts/{date.today()}-{slug}.md"
+    with open(filename, "w") as f:
+        f.write(f'---\nlayout: post\ntitle: "{title}"\ndate: {date.today()}\n---\n\n')
+    print(filename)
+}
+
+# @desc List all posts (most recent first)
+posts() ls -1r _posts/
