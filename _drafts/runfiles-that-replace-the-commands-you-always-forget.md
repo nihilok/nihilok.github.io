@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Five-Line Runfiles That Replace the Commands You Always Forget"
+title: "Runfiles That Replace the Commands You Always Forget"
 ---
 
 You know the ones. The commands you've run a hundred times but still can't type from memory. The ones that live in your shell history, a Slack DM to yourself, or a sticky note called `commands.txt` on your desktop.
