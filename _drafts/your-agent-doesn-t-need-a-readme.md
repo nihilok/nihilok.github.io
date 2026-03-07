@@ -3,9 +3,9 @@ layout: post
 title: "Your Agent Doesn't Need a README"
 ---
 
-We write READMEs for humans. Structured headings, prose explanations, code blocks with context. A human reads "To run the tests, use `cargo test --workspace`" and knows what to do.
+Your AI agent is reading your README right now. It's on paragraph three of the "Getting Started" section, trying to figure out whether `npm run dev` or `make dev` is the current way to start the project. It will get there eventually. That's the problem.
 
-An AI agent reads the same sentence and has to:
+We write READMEs for humans. Structured headings, prose explanations, code blocks with context. A human reads "To run the tests, use `cargo test --workspace`" and knows what to do. But an AI agent reads the same sentence and has to:
 
 1. Find the README
 2. Parse the natural language

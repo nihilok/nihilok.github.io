@@ -28,26 +28,24 @@ When that person goes on holiday, the whole team is Googling.
 A [Runfile](https://runtool.dev/docs) is that file. It lives in the root of your project, it's checked into version control, and it looks like this:
 
 ```bash
-# @desc Query the project database
-# @arg query SQL query to run
-db(query) {
-    psql "$DATABASE_URL" -c "$query"
+# @desc Start all services for local development
+dev() {
+    docker compose --profile dev up --build -d
 }
 
-# @desc Open SSH tunnel to staging DB
-tunnel() {
-    ssh -N -L 5433:staging-db.internal:5432 bastion.example.com
-}
-
-# @desc Seed the dev database
-seed() {
+# @desc Run database migrations
+migrate() {
     #!/usr/bin/env python
-    import json
-    from pathlib import Path
-    import subprocess
-    for fixture in sorted(Path("fixtures").glob("*.sql")):
-        print(f"Loading {fixture.name}...")
-        subprocess.run(["psql", DB_URL, "-f", str(fixture)], check=True)
+    from alembic import command
+    from alembic.config import Config
+    command.upgrade(Config("alembic.ini"), "head")
+    print("Migrations complete")
+}
+
+# @desc Tail logs for a specific service
+# @arg service Service name (api|worker|db)
+logs(service) {
+    docker compose logs -f $service
 }
 
 # @desc Run the full local CI check
@@ -62,15 +60,15 @@ New team member joins? `run --list` shows them everything. No README archaeology
 
 ```
 $ run --list
-db       Query the project database
-tunnel   Open SSH tunnel to staging DB
-seed     Seed the dev database
+dev      Start all services for local development
+migrate  Run database migrations
+logs     Tail logs for a specific service
 ci       Run the full local CI check
 ```
 
 ## Why not just a Makefile / scripts directory / README?
 
-**Makefiles** work, but they're hostile to anyone who doesn't already know Make. Tab-vs-spaces, `.PHONY`, `$(word 2,$(subst -, ,$@))` — it's a build system pretending to be a task runner. And Make targets don't have typed parameters, so anything beyond simple flags requires parsing `$(word)` substitutions that nobody can read.
+**Makefiles** work, but they're hostile to anyone who doesn't already know Make. Tab-vs-spaces, `.PHONY`, arcane variable substitution — it's a build system pretending to be a task runner. And Make targets don't have typed parameters, so anything beyond simple flags requires parsing that nobody can read.
 
 **A `scripts/` directory** fragments your commands across files with no discoverability. You need to read each script to know what it does and what arguments it takes. And there's no way to pass typed arguments without each script implementing its own arg parsing.
 
