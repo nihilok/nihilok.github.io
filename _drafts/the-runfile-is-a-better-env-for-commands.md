@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Runfile is a Better .env for Commands"
+title: "The Runfile: A Better .env for Commands"
 ---
 
 Every project has a `.env` file. At some point we all agreed: config values shouldn't live in your head, in Slack DMs, or in a wiki page titled "Dev Setup (OUTDATED)." They should live in a file, in the repo, with a clear name and a clear format.
@@ -31,7 +31,7 @@ A [Runfile](https://runtool.dev/docs) is that file. It lives in the root of your
 # @desc Query the project database
 # @arg query SQL query to run
 db(query) {
-    psql "postgresql://app:secret@db.internal:5432/myapp" -c "$query"
+    psql "$DATABASE_URL" -c "$query"
 }
 
 # @desc Open SSH tunnel to staging DB
@@ -70,11 +70,11 @@ ci       Run the full local CI check
 
 ## Why not just a Makefile / scripts directory / README?
 
-**Makefiles** work, but they're hostile to anyone who doesn't already know Make. Tab-vs-spaces, `.PHONY`, `$(word 2,$(subst -, ,$@))` — it's a build system pretending to be a task runner.
+**Makefiles** work, but they're hostile to anyone who doesn't already know Make. Tab-vs-spaces, `.PHONY`, `$(word 2,$(subst -, ,$@))` — it's a build system pretending to be a task runner. And Make targets don't have typed parameters, so anything beyond simple flags requires parsing `$(word)` substitutions that nobody can read.
 
-**A `scripts/` directory** fragments your commands across files with no discoverability. You need to read each script to know what it does and what arguments it takes.
+**A `scripts/` directory** fragments your commands across files with no discoverability. You need to read each script to know what it does and what arguments it takes. And there's no way to pass typed arguments without each script implementing its own arg parsing.
 
-**A README** is documentation, not automation. It goes stale the moment someone changes a flag and forgets to update the docs.
+**A README** is documentation, not automation. It goes stale the moment someone changes a flag and forgets to update the docs. And there's no way to tell whether the commands in it still work without running them.
 
 A Runfile is executable documentation. The descriptions are the docs. The functions are the automation. They can't drift apart because they're the same thing.
 
@@ -109,5 +109,7 @@ cargo install run
 Create a `Runfile` in your project root. Add the commands your team keeps asking about. Commit it.
 
 That's it. Your project's commands now have a home.
+
+And if you're working with AI coding agents, `run` exposes these same tools via [MCP](https://modelcontextprotocol.io) — but that's [a story for another post](/deterministic-toolbox-for-claude-code).
 
 The code is on [GitHub](https://github.com/nihilok/run). The docs are at [runtool.dev](https://runtool.dev).

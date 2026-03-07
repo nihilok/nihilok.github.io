@@ -16,7 +16,7 @@ That's the discovery tax. You pay it every session. The agent forgets everything
 It's not just the wasted tokens. It's the compound effect:
 
 - **Context pressure.** On long sessions you're already fighting the context window. Burning 2,500 tokens on discovery means you hit compression sooner.
-- **Confidence degradation.** Each failed attempt leaves error messages in the context. The agent second-guesses itself. It starts hedging. "Let me try another approach..."
+- **Confidence degradation.** Each failed attempt leaves error messages in the context. The agent second-guesses itself. It starts hedging. "Let me try another approach..." You've seen this — the agent starts confidently, hits two errors, and suddenly every response begins with "I apologise for the confusion."
 - **Your time.** You're sitting there watching it fumble through files you could have pointed it at in seconds.
 
 ## The refund
@@ -65,10 +65,13 @@ One tool call. ~100 tokens. Same result next session.
 | Tool calls to run tests | ~6 | 1 |
 | Context consumed | ~2,500 tokens | ~100 tokens |
 | Next session | Starts from scratch | Same registry |
+| Reliability | Varies by session | Deterministic |
 
 Over a day of coding sessions, that's thousands of tokens and dozens of tool calls you're not wasting on rediscovery.
 
 The discovery tax is zero.
+
+For the full picture — auto-truncation, security sandboxing, the deterministic skills layer — see [the deep dive](/deterministic-toolbox-for-claude-code).
 
 ```bash
 brew install nihilok/tap/runfile

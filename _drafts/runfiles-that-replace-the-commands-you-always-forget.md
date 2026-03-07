@@ -13,7 +13,7 @@ You know the ones. The commands you've run a hundred times but still can't type 
 # @desc Query the project database
 # @arg query SQL query to run
 db(query) {
-    psql "postgresql://app:secret@db.internal:5432/myapp" -c "$query"
+    psql "$DATABASE_URL" -c "$query"
 }
 ```
 
@@ -89,11 +89,25 @@ $ run deploy staging v1.4.2
 
 No more double-checking which cluster context you're in. No more accidentally deploying to prod because you fat-fingered the namespace.
 
+## 6. The workflow that ties it all together
+
+```bash
+# @desc Run the full local CI check
+ci() {
+    run lint
+    run fmt
+    run test
+    run build
+}
+```
+
+Runfile functions can call other Runfile functions. `run ci` runs your linter, formatter, tests, and build — in order, stopping on failure. Four lines, and you've gone from "aliases for things I forget" to actual workflow automation.
+
 ## The pattern
 
 If you're hitting `ctrl+r` for it, it should be a function. If it has flags you can't remember, it should be a function. If getting it wrong has consequences, it *definitely* should be a function.
 
-A [Runfile](https://runtool.dev) is just a file full of functions. No YAML, no config format to learn — if you can write bash (or Python, or Node), you can write a Runfile.
+A [Runfile](https://runtool.dev/docs) is just a file full of functions. If you can write bash (or Python, or Node), you can write a Runfile. No build system to learn. No config format to memorise. Your Runfile is just the commands you already run, with names.
 
 ```bash
 brew install nihilok/tap/runfile
