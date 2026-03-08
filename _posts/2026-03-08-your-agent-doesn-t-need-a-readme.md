@@ -72,7 +72,9 @@ This matters even more when you combine it with Claude Code's [skills](https://d
 
 This isn't an argument against READMEs. Write them for your human teammates. Explain the *why*, the architecture, the gotchas.
 
-But stop expecting your agent to use them as an API. Give it a real one.
+You can even document your Runfile commands in the README. They're just as useful on the command line as they are via MCP: `run test`, `run deploy staging`, `run ci`. The README explains when and why to use them. The Runfile is the executable source of truth.
+
+But stop expecting your agent to use the README as an API. Give it a real one.
 
 ```bash
 brew install nihilok/tap/runtool
