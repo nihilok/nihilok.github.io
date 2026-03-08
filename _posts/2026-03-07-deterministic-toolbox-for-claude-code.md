@@ -156,7 +156,7 @@ Skills tell the agent _when_ to act. The Runfile tells it _what_ to do. Keeping 
 Install `run`:
 
 ```bash
-brew install nihilok/tap/runfile
+brew install nihilok/tap/runtool
 # or
 cargo install run
 ```

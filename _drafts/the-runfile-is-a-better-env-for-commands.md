@@ -99,7 +99,7 @@ A Runfile does the same thing for commands:
 ## Getting started
 
 ```bash
-brew install nihilok/tap/runfile
+brew install nihilok/tap/runtool
 # or
 cargo install run
 ```

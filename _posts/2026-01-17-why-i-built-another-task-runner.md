@@ -197,7 +197,7 @@ I don't know. Maybe you're happy with Make. Maybe Just works perfectly for you. 
 But if you've ever thought "there has to be a simpler way to do this" — whether that's passing typed arguments to a Python task without `argparse`, writing cross-platform tasks without conditional hell, or giving your AI agent access to your project's tools — maybe give it a try:
 
 ```bash
-brew install nihilok/tap/runfile
+brew install nihilok/tap/runtool
 ```
 
 or

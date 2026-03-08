@@ -110,7 +110,7 @@ If you're hitting `ctrl+r` for it, it should be a function. If it has flags you 
 A [Runfile](https://runtool.dev/docs) is just a file full of functions. If you can write bash (or Python, or Node), you can write a Runfile. No build system to learn. No config format to memorise. Your Runfile is just the commands you already run, with names.
 
 ```bash
-brew install nihilok/tap/runfile
+brew install nihilok/tap/runtool
 # or
 cargo install run
 ```

@@ -75,7 +75,7 @@ This isn't an argument against READMEs. Write them for your human teammates. Exp
 But stop expecting your agent to use them as an API. Give it a real one.
 
 ```bash
-brew install nihilok/tap/runfile
+brew install nihilok/tap/runtool
 ```
 
 [GitHub](https://github.com/nihilok/run) · [Docs](https://runtool.dev/docs)

@@ -74,7 +74,7 @@ The discovery tax is zero.
 For the full picture — auto-truncation, security sandboxing, the deterministic skills layer — see [the deep dive](/deterministic-toolbox-for-claude-code).
 
 ```bash
-brew install nihilok/tap/runfile
+brew install nihilok/tap/runtool
 ```
 
 [GitHub](https://github.com/nihilok/run) · [Docs](https://runtool.dev/docs)
