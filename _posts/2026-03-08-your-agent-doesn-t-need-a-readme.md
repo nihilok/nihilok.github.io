@@ -1,4 +1,5 @@
 ---
+date: 2026-03-08
 layout: post
 title: "Your Agent Doesn't Need a README"
 ---
