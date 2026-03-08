@@ -18,7 +18,7 @@ It works. Eventually. But it's the wrong interface for the job.
 
 ## Structured beats unstructured
 
-READMEs are documentation. They're great at explaining *why*. They're terrible at telling a machine *what* — because the machine has to do natural language parsing on a document designed for humans, and extract structured information from an unstructured format.
+READMEs are documentation. They're great at explaining *why*. They're terrible at telling a machine *what*, because the machine has to do natural language parsing on a document designed for humans, and extract structured information from an unstructured format.
 
 What agents actually need is a schema: a tool name, a description, typed parameters, and defaults. That's what [MCP](https://modelcontextprotocol.io) provides.
 
@@ -58,15 +58,15 @@ No ambiguity. No staleness risk. The schema *is* the interface.
 
 Here's the other thing: when the agent reads your README to discover commands, it also reads everything else in there. Internal URLs, architecture decisions, deployment details, service names. All of it goes into the context window.
 
-An MCP tool registry exposes *only* the tool interface — name, description, parameters. The implementation stays behind the wall. Your agent gets powerful, well-defined tools without getting a map of your internals.
+An MCP tool registry exposes *only* the tool interface: name, description, parameters. The implementation stays behind the wall. Your agent gets powerful, well-defined tools without getting a map of your internals.
 
 ## Deterministic beats probabilistic
 
-There's a deeper point here. When an agent reads a README and extracts a command, the result is probabilistic. It *probably* gets the right command. It *probably* passes the right flags. But "probably" compounds badly across a session — each probably-correct step increases the chance that one of them isn't.
+There's a deeper point here. When an agent reads a README and extracts a command, the result is probabilistic. It *probably* gets the right command. It *probably* passes the right flags. But "probably" compounds badly across a session. Each probably-correct step increases the chance that one of them isn't.
 
-A Runfile is deterministic. `run test` runs the test suite, with the right flags, every time. The agent doesn't interpret instructions — it calls a tool. There's no gap between what you intended and what executes.
+A Runfile is deterministic. `run test` runs the test suite, with the right flags, every time. The agent doesn't interpret instructions, it calls a tool. There's no gap between what you intended and what executes.
 
-This matters even more when you combine it with Claude Code's [skills](https://docs.anthropic.com/en/docs/claude-code/skills). You can write a skill that says "before committing, always run `ci`" — and because `ci` is a deterministic MCP tool, not a natural language instruction, the behaviour is predictable and auditable. Skills tell the agent *when* to act. The Runfile tells it *what* to do.
+This matters even more when you combine it with Claude Code's [skills](https://docs.anthropic.com/en/docs/claude-code/skills). You can write a skill that says "before committing, always run `ci`" — and because `ci` is a deterministic MCP tool, not a natural language instruction, the behaviour is predictable and auditable. Skills tell the agent *when* to act. The Runfile tells it *what* to do. Keeping those concerns separate makes both more reliable.
 
 ## The README is still useful
 
