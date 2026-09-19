@@ -1,4 +1,5 @@
 ---
+date: 2026-09-19
 layout: post
 title: "The Discovery Tax"
 ---
