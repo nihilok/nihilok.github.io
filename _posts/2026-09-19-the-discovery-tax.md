@@ -76,6 +76,10 @@ For the full picture — auto-truncation, security sandboxing, the deterministic
 
 ```bash
 brew install nihilok/tap/runtool
+# or
+yay -S runtool
+# or
+cargo install run
 ```
 
 [GitHub](https://github.com/nihilok/run) · [Docs](https://runtool.dev/docs)
