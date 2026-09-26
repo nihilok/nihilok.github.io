@@ -1,9 +1,10 @@
 title: The Hack Job Handbook
 description: "A blog about hacking, programming, and other tech stuff."
+url: "https://blog.jarv.dev"
 author:
   name: "nihilok"
   email: "mike@jarv.dev"
-  url: "https://nihilok.github.io"
+  url: "https://blog.jarv.dev"
 
 baseurl: /
 
