@@ -101,6 +101,8 @@ A Runfile does the same thing for commands:
 ```bash
 brew install nihilok/tap/runtool
 # or
+yay -S runtool
+# or
 cargo install run
 ```
 
