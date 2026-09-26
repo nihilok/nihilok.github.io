@@ -45,7 +45,7 @@ Add it to your Claude Code config:
 ```json
 {
   "mcpServers": {
-    "runtool": { "command": "run", "args": ["--serve-mcp"] }
+    "run": { "command": "run", "args": ["--serve-mcp"] }
   }
 }
 ```
@@ -54,7 +54,7 @@ Now the same interaction looks like this:
 
 ```
 You:    run the tests
-Agent:  [tool] mcp:runtool test → success
+Agent:  [tool] mcp:run test → success
 ```
 
 One tool call. ~100 tokens. Same result next session.
