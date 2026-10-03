@@ -83,7 +83,7 @@ While enterprise committees are still debating whether Copilot chat should be pe
 
 ---
 
-## 4. The Maths
+## 4. Comparing the Builds
 
 Compare the two paradigms side by side:
 
