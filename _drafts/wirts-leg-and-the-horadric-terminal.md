@@ -99,7 +99,7 @@ Compare the two paradigms side by side:
 
 ---
 
-## 5. The Receipt
+## 5. The Takeaway
 
 For twenty years, the software industry told you that deep systems knowledge was obsolete. They said you didn't need to understand process signals, file permissions, shell pipelines, or relational row locks. They told you the vendors would build a slick GUI that handled everything.
 
