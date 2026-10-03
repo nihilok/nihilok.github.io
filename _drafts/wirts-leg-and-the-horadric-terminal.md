@@ -7,7 +7,7 @@ title: "Wirt's Leg and the Horadric Terminal: Why the Best AI Workflows Look Lik
 
 In the classic action RPG *Diablo II*, every player starts in the safe confines of the starter town—the Rogue Encampment.
 
-The local vendors sell safe, sanitised gear: basic iron swords, standard healing potions, predictable leather boots. For twenty years, corporate developer culture has offered engineers the exact same advice: stay inside the encampment, buy the vendor-approved tools, and fight your way through the backlog as the enterprise manual intended. Don't go wandering out into the dark, and for heaven's sake, don't waste your time hoarding dusty, arcane arcana like POSIX signals, AST refactoring, and Unix domain sockets.
+The local vendors sell safe, sanitised gear: basic iron swords, standard healing potions, predictable leather boots. For twenty years, corporate developer culture has offered engineers the exact same advice: stay inside the encampment, buy the vendor-approved tools, and fight your way through the backlog as the enterprise manual intended. Don't go wandering out into the dark, and for heaven's sake, don't waste your time hoarding dusty, arcane runes like POSIX signals, AST refactoring, and Unix domain sockets.
 
 Then there is the other way to play.
 
