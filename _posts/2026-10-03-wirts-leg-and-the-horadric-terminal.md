@@ -1,4 +1,5 @@
 ---
+date: 2026-10-03
 layout: post
 title: "Wirt's Leg and the Horadric Terminal: Why the Best AI Workflows Look Like Madness"
 ---
