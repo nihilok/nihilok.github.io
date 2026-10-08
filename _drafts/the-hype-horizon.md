@@ -3,9 +3,9 @@ layout: post
 title: "The Hype Horizon"
 ---
 
-At work, nobody is actually fighting a holy war over AI tools. It’s much more mundane than that: people just endlessly flip-flop.
+The cycle at work is completely predictable: the team endlessly flip-flops between AI tools.
 
-One week, the team is fed up with Claude Code. The complaints are always identical: *"It’s too verbose, it stops too often, and it asks three clarifying questions before it touches a single file."* 
+One week, everyone is fed up with Claude Code. The complaints are always identical: *"It’s too verbose, it stops too often, and it asks three clarifying questions before it touches a single file."* 
 
 So everyone drifts over to Codex. Two days later, the mood inverts: *"Codex is wonderfully concise, but it’s completely hopeless if you leave it running overnight—it hit a trivial question at 2:00 AM, stopped dead, and waited six hours for me to type 'yes'."*
 
@@ -120,7 +120,7 @@ The environment belongs to me, not to Anthropic, OpenAI, or Google.
 
 The AI industry spends billions of dollars trying to convince you that productivity is something you rent on a monthly subscription. 
 
-If you believe the marketing, you'll spend your days riding the hype rollercoaster: celebrating when your chosen tool gets a minor version bump, despairing when it gets too verbose, and arguing in Slack about which vendor has "won" the week.
+If you believe the marketing, you'll spend your days riding the hype rollercoaster: celebrating when your chosen tool gets a minor version bump, despairing when it gets too verbose, and endlessly debating which platform has "won" the week.
 
 Step outside the horizon.
 
