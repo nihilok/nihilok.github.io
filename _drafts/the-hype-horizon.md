@@ -82,9 +82,7 @@ Instead of paying that token tax, I pop open Neovim in a quick split. Two keystr
 You don't burn precious context asking an LLM questions that your own skills can answer instantly. You keep the agent’s context lean, clean, and pointed strictly at the heavy lifting.
 
 ### B. Demystifying the Binary (Shell Muscle)
-Inside the bubble, launching an agent is treated like entering a cathedral: opening a dedicated desktop suite, clicking through workspace modals, or typing out paragraphs of setup instructions.
-
-In a sovereign shell, an agent is just another binary in your `$PATH`. 
+You don't need ceremony to work with an agent. In a sovereign shell, an agent is just another binary in your `$PATH`. 
 
 A two-letter shell alias like `asb` drops me straight into `~/sandbox` and spins up `agy` in half a second. Another alias launches an agent with raw execution flags. It sits right alongside `alias v='nvim .'` and `alias g='git'`. 
 
