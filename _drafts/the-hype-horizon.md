@@ -7,7 +7,7 @@ The cycle at work is completely predictable: the team endlessly flip-flops betwe
 
 One week, everyone is fed up with Claude Code. The complaints are always identical: *"It’s too verbose, it stops too often, and it asks three clarifying questions before it touches a single file."* 
 
-So everyone drifts over to Codex. Two days later, the mood inverts: *"Codex is wonderfully concise, but it’s completely hopeless if you leave it running overnight—it hit a trivial question at 2:00 AM, stopped dead, and waited six hours for me to type 'yes'."*
+So everyone drifts over to Codex. Two days later, the mood inverts: *"Codex is wonderfully concise, but it’s completely hopeless if you leave it running overnight: it hit a trivial question at 2:00 AM, stopped dead, and waited six hours for me to type 'yes'."*
 
 Then a fresh checkpoint drops. Anthropic releases Opus 5.5 and it suddenly shuts up and gets to the point. OpenAI ships GPT-6 and it finally stops stalling out in the middle of the night. The quirks swap places, the complaints reset, and the entire office rotates their preferences all over again.
 
@@ -19,8 +19,7 @@ Instead, I treat both platforms with complete, cold agnosticism. In fact, I gami
 
 ## 1. Gamifying the Workday
 
-At the office, I use Claude Code as a "Godfather" session—a lead orchestrator running in a persistent terminal from whence I dispatch workers across both Claude and Codex. 
-
+At the office, I use Claude Code as a "Godfather" session: a lead orchestrator running in a persistent terminal from whence I dispatch workers across both Claude and Codex. 
 I don't care which one is currently in vogue on Reddit. I care about quota arithmetic:
 
 * Claude starts getting chatty or burning through tokens on exploratory reasoning? I offload the heavy execution to Codex.
@@ -39,7 +38,7 @@ And then I go home.
 
 At home, for my personal projects on my Arch Linux rig, I don't touch Claude Code. I don't touch Codex. 
 
-I use `agy`—the Gemini / Antigravity CLI—purely because it comes bundled with my personal Google AI Pro plan.
+I use `agy` (the Gemini / Antigravity CLI) purely because it comes bundled with my personal Google AI Pro plan.
 
 If your perception of AI tooling is formed entirely by developer Twitter and technical subreddits, you’d assume the universe begins and ends with Anthropic and OpenAI. Outside of official announcements, `agy` barely registers in the social media hype cycle. There are no breathless threads dissecting its system prompts; there are no viral memes about its latest UI tweak. It sits completely beyond the hype horizon.
 
@@ -51,9 +50,9 @@ While the work bubble is endlessly fretting over token pricing and prompt verbos
 
 * **[AgentTelegramBot](https://github.com/nihilok/AgentTelegramBot):** A complete, multi-threaded Rust and Teloxide daemon with a local SQLite IPC server that routes live agent alerts to my phone with swipe-to-reply session steering.
 * **[Spud](https://github.com/nihilok/spud):** A modular, local-first voice dictation and orchestration platform integrating `faster-whisper` and `Qwen3-TTS` on my RTX 5060 Ti directly into terminal multiplexer panes.
-* Converting my base EndeavourOS installation into a completely bespoke, agent-centric Hyprland operating system—rebuilding keybindings, scripts, and window rules in minutes without missing a beat.
+* Converting my base EndeavourOS installation into a completely bespoke, agent-centric Hyprland operating system: rebuilding keybindings, scripts, and window rules in minutes without missing a beat.
 
-No hesitation. No twenty-question questionnaires before executing a shell command. It just chewed through the tasks and shipped.
+No hesitation. No endless permission prompts before executing a shell command. It just chewed through the tasks and shipped.
 
 And that was when the real contrast hit me: **the hype machine has created an echo chamber where developers tolerate constant friction simply because they don't realise what's happening outside the perimeter.**
 
@@ -61,7 +60,7 @@ And that was when the real contrast hit me: **the hype machine has created an ec
 
 ## 3. The Real Multiplier: The Pilot, Not the Plane
 
-When you step back and look at the whole picture—juggling Claude and Codex at the office, smashing out Rust daemons with `agy` at home—the central truth becomes undeniable:
+When you step back and look at the whole picture (juggling Claude and Codex at the office, smashing out Rust daemons with `agy` at home), the central truth becomes undeniable:
 
 **It was never the tool that made the difference. It was the operator.**
 
@@ -94,22 +93,6 @@ The moment you treat an agent like a standard Unix binary in your terminal, the 
 ### C. Workspace Orchestration (Herdr & SSH)
 To keep all these pieces coherent without relying on a vendor's proprietary desktop wrapper, I run a terminal workspace manager called [Herdr](https://herdr.dev).
 
-```
-┌────────────────────────────────────────────────────────┐
-│ HERDR WORKSPACE                                        │
-│                                                        │
-│  [Tab 1: Mac / Local]       [Tab 2: Arch / SSH]        │
-│  ┌───────────────────────┐  ┌───────────────────────┐  │
-│  │ Neovim (Inspection)   │  │ Antigravity (Gemini)  │  │
-│  │ LSP / Diff Search     │  │ Fast Heavy Scaffolding │  │
-│  └───────────────────────┘  └───────────────────────┘  │
-│  ┌───────────────────────┐  ┌───────────────────────┐  │
-│  │ Claude Code (Worker)  │  │ Codex (Worker)        │  │
-│  │ Surgical Bash Loop    │  │ Test & Edge Cases     │  │
-│  └───────────────────────┘  └───────────────────────┘  │
-└────────────────────────────────────────────────────────┘
-```
-
 My lightweight MacBook on the sofa connects over SSH to the Arch Linux workstation in the corner chewing through heavy local compilation and voice models. Herdr keeps the persistent sessions alive, the hotkeys consistent, and the status indicators (`working`, `idle`, `blocked`) visible across machines.
 
 The environment belongs to me, not to Anthropic, OpenAI, or Google.
@@ -124,6 +107,6 @@ If you believe the marketing, you'll spend your days riding the hype rollercoast
 
 Step outside the horizon.
 
-Treat the models with cold, unemotional agnosticism. Gamify your subscriptions. Use your own developer skills in Neovim to keep their contexts clean. And don't sleep on the quiet workhorses outside the hype cycle that simply show up, don't ask twenty timid questions, and smash through work.
+Treat the models with cold, unemotional agnosticism. Gamify your subscriptions. Use your own developer skills in Neovim to keep their contexts clean. And don't sleep on the quiet workhorses outside the hype cycle that simply show up, stay out of your way, and get the job done.
 
 The models will change their personalities again next Tuesday. The engineer at the terminal is still the one building the system.
