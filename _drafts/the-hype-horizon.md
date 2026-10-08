@@ -67,7 +67,7 @@ It’s in the unglamorous, durable systems engineering that surrounds the agent.
 
 Here is what actual leverage looks like in practice, regardless of whether you're typing into Claude, Codex, or Antigravity:
 
-### A. The Sovereign Inspection Deck (Neovim)
+### A. The Sovereign Inspection Deck (Neovim & Shell Muscle)
 I don’t sit in Neovim all day writing boilerplate by hand anymore. But Neovim is indispensable for one vital reason: **saving tokens by using my own actual skills.**
 
 Inside the hype bubble, developers treat their agent like an all-knowing oracle for trivial navigation:
@@ -77,6 +77,8 @@ Inside the hype bubble, developers treat their agent like an all-knowing oracle 
 The agent fires off three tool calls, reads four files, dumps 2,500 tokens of file sludge into its context window, and charges you against your rate limit just to tell you what's on line 42 of a file you already know.
 
 Instead of paying that token tax, I pop open Neovim in a quick split or scratch terminal. Two keystrokes in Telescope or an LSP shortcut, and I’ve inspected the definition, verified the import, or checked the diff in two seconds flat. 
+
+The same discipline applies to shell choreography. Inside the bubble, launching an agent is treated like entering a cathedral: opening a dedicated desktop suite, clicking through workspace modals, or prompting the bot to prepare a scratch directory. In a sovereign terminal, an agent is just another binary in your PATH. A two-letter shell alias like `asb` jumps into a sandbox and fires up the model in half a second, sitting right alongside `alias v='nvim .'`.
 
 You don’t burn precious context asking an LLM questions that your own muscle memory can answer instantly. You keep the agent’s context lean, clean, and pointed strictly at the heavy lifting.
 
