@@ -76,14 +76,18 @@ git worktree add ~/Workspace/.worktrees/feature-auth-refactor -b feature/auth-re
 
 Whether an agent succeeds or goes completely off the rails, your main tree remains untouched. Two agents can work on separate problems simultaneously without ever trampling each other’s uncommitted files.
 
-### B. The Human in the Adjacent Pane (Neovim)
-The hype bubble wants you to live inside an all-in-one AI environment where the agent does everything and you passively click "Accept".
+### B. The Sovereign Inspection Deck (Neovim)
+I don’t sit in Neovim all day writing boilerplate by hand anymore. But Neovim is indispensable for one vital reason: **saving tokens by using my own actual skills.**
 
-In reality, the most effective setup is a split terminal. The agent runs in one pane; **Neovim** sits in the other. 
+Inside the hype bubble, developers treat their agent like an all-knowing oracle for trivial navigation:
+*"Can you search the repo for where `process_order` is called?"*
+*"Can you check which interface defines `PaymentMethod`?"*
 
-While the agent generates code, Neovim’s LSP diagnostics, Treesitter parsing, and type checkers are running live against the files. When an agent hallucinates a deprecated parameter or introduces an ugly type cast, you don’t spend three round-trips prompting it to fix its mistake. You hop into Neovim, make the five-character edit in two seconds, save, and let the agent continue.
+The agent fires off three tool calls, reads four files, dumps 2,500 tokens of file sludge into its context window, and charges you against your rate limit just to tell you what's on line 42 of a file you already know.
 
-The editor belongs to the human; the agent is merely an assistant holding a spanner.
+Instead of paying that token tax, I pop open Neovim in a quick split or scratch terminal. Two keystrokes in Telescope or an LSP shortcut, and I’ve inspected the definition, verified the import, or checked the diff in two seconds flat. 
+
+You don’t burn precious context asking an LLM questions that your own muscle memory can answer instantly. You keep the agent’s context lean, clean, and pointed strictly at the heavy lifting.
 
 ### C. Workspace Orchestration (Herdr & SSH)
 Instead of relying on a vendor’s proprietary desktop GUI, I use a terminal workspace manager called [Herdr](https://herdr.dev) paired with persistent sessions and SSH.
