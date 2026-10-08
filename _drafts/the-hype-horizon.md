@@ -67,16 +67,7 @@ It’s in the unglamorous, durable systems engineering that surrounds the agent.
 
 Here is what actual leverage looks like in practice, regardless of whether you're typing into Claude, Codex, or Antigravity:
 
-### A. Sovereign Workspaces (Git Worktrees)
-Never let an agent run inside your dirty working directory. In my setup, every session gets an isolated git worktree:
-
-```bash
-git worktree add ~/Workspace/.worktrees/feature-auth-refactor -b feature/auth-refactor
-```
-
-Whether an agent succeeds or goes completely off the rails, your main tree remains untouched. Two agents can work on separate problems simultaneously without ever trampling each other’s uncommitted files.
-
-### B. The Sovereign Inspection Deck (Neovim)
+### A. The Sovereign Inspection Deck (Neovim)
 I don’t sit in Neovim all day writing boilerplate by hand anymore. But Neovim is indispensable for one vital reason: **saving tokens by using my own actual skills.**
 
 Inside the hype bubble, developers treat their agent like an all-knowing oracle for trivial navigation:
@@ -89,7 +80,7 @@ Instead of paying that token tax, I pop open Neovim in a quick split or scratch 
 
 You don’t burn precious context asking an LLM questions that your own muscle memory can answer instantly. You keep the agent’s context lean, clean, and pointed strictly at the heavy lifting.
 
-### C. Workspace Orchestration (Herdr & SSH)
+### B. Workspace Orchestration (Herdr & SSH)
 Instead of relying on a vendor’s proprietary desktop GUI, I use a terminal workspace manager called [Herdr](https://herdr.dev) paired with persistent sessions and SSH.
 
 ```
@@ -112,7 +103,7 @@ My lightweight MacBook on the sofa connects over SSH to a headless Arch Linux bo
 
 The environment is decoupled from any single AI vendor.
 
-### D. The Mothership Pattern
+### C. The Mothership Pattern
 At work, I don't use Claude Code as a standalone assistant. I use it as an orchestrator—a **"Godfather" session** running in a primary workspace from whence I dispatch focused worker sessions across both Claude and Codex.
 
 The Godfather acts as the project lead: breaking down the roadmap, assigning discrete tasks to worker sessions in separate worktrees, and coordinating progress.
