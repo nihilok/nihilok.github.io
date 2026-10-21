@@ -58,18 +58,34 @@ And that was when the real contrast hit me: **the hype machine has created an ec
 
 ---
 
-## 3. The Real Multiplier: The Pilot, Not the Plane
+## 3. Laying Track in Front of the Train
 
-When you step back and look at the whole picture (juggling Claude and Codex at the office, smashing out Rust daemons with `agy` at home), the central truth becomes undeniable:
+If you’ve ever watched the classic Wallace & Gromit short *The Wrong Trousers*, you’ll remember the train chase: Gromit is perched on the front of a speeding toy locomotive, a box of wooden rails in his lap, frantically slapping track pieces onto the floorboards a split second before the wheels hit bare carpet.
 
-**It was never the tool that made the difference. It was the operator.**
+That is what modern software engineering with AI actually looks like.
 
-In 2026, all frontier agents are astonishingly capable. They all run bash commands, call tools, inspect files, and edit code. The benchmark differences on paper are single-digit margins that flip every time someone pushes a new checkpoint to production.
+The marketing hype wants you to believe you’ve bought a ticket on a luxury high-speed bullet train: you lean back in your seat and let the frontier model whisk you smoothly to your pull request.
 
-What actually dictates whether an agent ships clean software or drowns in hallucinations isn't the model's logo. It’s the human's systems discipline:
+In reality, you are Gromit.
 
-### A. Saving Tokens with Actual Skills (Neovim)
-I don’t sit in Neovim writing endless boilerplate by hand anymore. But Neovim remains open in a split terminal for one crucial reason: **saving tokens by using my own actual skills.**
+The engine is hurtling forward across the living room carpet. Sometimes you’re hitched to Claude, sometimes Codex, sometimes Gemini, and sometimes a quantized local model chugging along on your own GPU. 
+
+The engines feel completely different:
+* One engine runs blisteringly fast but gets twitchy around corners.
+* Another engine chugs along methodically but threatens to stall on straightaways.
+* A local model runs at a modest pace on your local hardware, keeping private data offline while taking smaller, deliberate steps.
+
+The experience may be slower or faster depending on which locomotive is pulling the carriages. But whatever your tooling, **you are the one in control of it.**
+
+You don't throw your hands up in despair when an engine changes its personality or slows down. You adapt, and you put the guardrails in place as you go:
+
+### A. The Rails: Tests and Verification
+The engine doesn't decide where the train goes: the rails do. 
+
+When a model is running hot and fast, you lay down strict compiler checks and automated test suites so it doesn't overshoot the bend. When an agent gets hesitant, you lay down tighter, more explicit task definitions to keep it moving. You don't ask the engine to steer itself; you constrain the physical geometry of where it's allowed to run.
+
+### B. The Quick Adjustments: Actual Skills in Neovim
+I don’t sit in Neovim writing endless boilerplate by hand anymore. But Neovim remains open in a split terminal for one crucial reason: **saving tokens and adjusting the track with my own actual skills.**
 
 Inside the hype bubble, developers treat their agent like an all-knowing oracle for trivial navigation:
 *"Can you search the repo for where `process_order` is called?"*
@@ -81,14 +97,14 @@ Instead of paying that token tax, I pop open Neovim in a quick split. Two keystr
 
 You don't burn precious context asking an LLM questions that your own skills can answer instantly. You keep the agent’s context lean, clean, and pointed strictly at the heavy lifting.
 
-### B. Demystifying the Binary (Shell Muscle)
+### C. Demystifying the Binary (Shell Muscle)
 You don't need ceremony to work with an agent. In a sovereign shell, an agent is just another binary in your `$PATH`. 
 
 A two-letter shell alias like `asb` drops me straight into `~/sandbox` and spins up `agy` in half a second. Another alias launches an agent with raw execution flags. It sits right alongside `alias v='nvim .'` and `alias g='git'`. 
 
 The moment you treat an agent like a standard Unix binary in your terminal, the marketing mystique evaporates.
 
-### C. Workspace Orchestration (Herdr & SSH)
+### D. The Junction Box: Workspace Orchestration (Herdr & SSH)
 To keep all these pieces coherent without relying on a vendor's proprietary desktop wrapper, I run a terminal workspace manager called [Herdr](https://herdr.dev).
 
 My lightweight MacBook on the sofa connects over SSH to the Arch Linux workstation in the corner chewing through heavy local compilation and voice models. Herdr keeps the persistent sessions alive, the hotkeys consistent, and the status indicators (`working`, `idle`, `blocked`) visible across machines.
@@ -99,12 +115,12 @@ The environment belongs to me, not to Anthropic, OpenAI, or Google.
 
 ## 4. The Takeaway
 
-The AI industry spends billions of dollars trying to convince you that productivity is something you rent on a monthly subscription. 
+The AI industry spends billions of dollars trying to convince you that productivity is an annuity you lease on a monthly subscription. 
 
 If you believe the marketing, you'll spend your days riding the hype rollercoaster: celebrating when your chosen tool gets a minor version bump, despairing when it gets too verbose, and endlessly debating which platform has "won" the week.
 
 Step outside the horizon.
 
-Treat the models with cold, unemotional agnosticism. Gamify your subscriptions. Use your own developer skills in Neovim to keep their contexts clean. And don't sleep on the quiet workhorses outside the hype cycle that simply show up, stay out of your way, and get the job done.
+Whatever your tooling (Claude, Codex, Gemini, or a local model on your GPU), you are the one laying the track. The engine might run faster or slower, but you adapt, adjust the guardrails, and keep the train moving forward. Gamify your subscriptions. Use your own developer skills in Neovim to keep contexts clean. And don't sleep on the quiet workhorses outside the hype cycle that simply show up, stay out of your way, and get the job done.
 
-The models will change their personalities again next Tuesday. The engineer at the terminal is still the one building the system.
+The models will change their personalities again next Tuesday. The engineer laying the track is still the one building the system.
