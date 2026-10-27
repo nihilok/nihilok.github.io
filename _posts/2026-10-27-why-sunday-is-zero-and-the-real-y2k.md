@@ -87,13 +87,13 @@ Once we started pulling on the thread, my Antigravity CLI session turned into a 
 
 Here is the actual maths on when computer time runs out:
 
-| Target Date           | The Mechanism                        | What Actually Breaks                                                                                               | Severity                                                |
-| :-------------------- | :----------------------------------- | :----------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------ |
-| **Jan 1, 2000**       | 2-digit assumptions & `19%d`         | Date formatting printed `19100`; sorting broke.                                                                    | The Original Y2K                                        |
-| **Jan 1, 2028**       | Signed 8-bit `tm_year` overflow      | Any legacy firmware packing `tm_year` into an `int8` rolls from `127` to `-128`, catapulting the date to **1772**. | Obscure embedded microcontrollers & old [SCADA](https://en.wikipedia.org/wiki/SCADA)           |
-| **Feb 7, 2036**       | NTP 32-bit epoch rollover            | [Network Time Protocol](https://en.wikipedia.org/wiki/Network_Time_Protocol) unsigned 32-bit seconds since Jan 1, 1900 reach $2^{32}-1$. Wraps back to **1900**.          | Unpatched IoT devices & old NTP clients                 |
-| **Jan 19, 2038**      | Unix `time_t` 32-bit signed overflow | Signed 32-bit seconds since 1970 hit `2,147,483,647`. Wraps to negative, jumping to **Dec 13, 1901**.              | **[The Real Y2K](https://en.wikipedia.org/wiki/Year_2038_problem)**: massive disruption for 32-bit systems |
-| **Year ~292 Billion** | 64-bit `time_t`                      | Signed 64-bit seconds since 1970.                                                                                  | The heat death of the universe                          |
+| Target Date           | The Mechanism                        | What Actually Breaks                                                                                                                                             | Severity                                                                                                   |
+| :-------------------- | :----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| **Jan 1, 2000**       | 2-digit assumptions & `19%d`         | Date formatting printed `19100`; sorting broke.                                                                                                                  | The Original Y2K                                                                                           |
+| **Jan 1, 2028**       | Signed 8-bit `tm_year` overflow      | Any legacy firmware packing `tm_year` into an `int8` rolls from `127` to `-128`, catapulting the date to **1772**.                                               | Obscure embedded microcontrollers & old [SCADA](https://en.wikipedia.org/wiki/SCADA)                       |
+| **Feb 7, 2036**       | NTP 32-bit epoch rollover            | [Network Time Protocol](https://en.wikipedia.org/wiki/Network_Time_Protocol) unsigned 32-bit seconds since Jan 1, 1900 reach $2^{32}-1$. Wraps back to **1900**. | Unpatched IoT devices & old NTP clients                                                                    |
+| **Jan 19, 2038**      | Unix `time_t` 32-bit signed overflow | Signed 32-bit seconds since 1970 hit `2,147,483,647`. Wraps to negative, jumping to **Dec 13, 1901**.                                                            | **[The Real Y2K](https://en.wikipedia.org/wiki/Year_2038_problem)**: massive disruption for 32-bit systems |
+| **Year ~292 Billion** | 64-bit `time_t`                      | Signed 64-bit seconds since 1970.                                                                                                                                | The heat death of the universe                                                                             |
 
 The 2028 one is mostly a curiosity—standard C defined `tm_year` as a full `int`, so it only bites devices where an engineer decided to bit-pack the struct into a single signed byte to save flash memory.
 
@@ -109,7 +109,7 @@ And 2038 is the Big One. Every legacy 32-bit Linux kernel running on industrial 
 
 Sitting there looking at our raw ESP32 code, the fix for our central heating controller was obvious.
 
-With C's `0..=6` numbering, the weekend isn't even contiguous—Saturday (`6`) and Sunday (`0`) sit at opposite ends of the number line. For a British central heating programmer where the whole mental model is **Weekdays** (Monday–Friday) versus **Weekends** (Saturday–Sunday), `Sunday = 0` splits your weekend in half and practically begs for an off-by-one bug that fires the boiler up at 5:30 AM on a Sunday morning.
+With C's `0..=6` numbering, the weekend isn't even contiguous: Saturday (`6`) and Sunday (`0`) sit at opposite ends of the number line. For a British central heating programmer where the whole mental model is **Weekdays** (Monday–Friday) versus **Weekends** (Saturday–Sunday), `Sunday = 0` splits your weekend in half and is asking for an off-by-one bug that fires the boiler up at 5:30 AM on a Sunday morning (although it's definitely getting to the point where AI probably wouldn't make the same idle mistakes that humans make!).
 
 With ISO 8601 (`Monday = 1 .. Sunday = 7`), weekdays are a clean `1..=5` and the weekend sits side-by-side at `6..=7`.
 
@@ -181,7 +181,7 @@ Yeah it's a bit of boilerplate, and AI would have probably got it right either w
 
 ## 5. Two Machines Into One (and Ready for 2038)
 
-By the end of the session, using a mix of Opus 5.5, Gemini Flash 3.8, and Gemini Argon, which are all available in `agy`, the rest of the stack fell into place faster and more cleanly than I would have thought possible on an £18.99 a month subscription (that also covers my family and comes with storage and loads of other bits 🤯):
+By the end of the session, using a mix of Opus 5.5, Gemini Flash 3.8, and Gemini Argon, which are all available in `agy`, the rest of the stack fell into place faster and more cleanly than I would have thought possible on an £18.99 a month subscription (that also covers my family and comes with 5TB storage and various other bits and bobs 🤯):
 
 - **Schedules in NVS:** Instead of a Raspberry Pi wearing out an SD card writing `persistence.json` on every poll, the ESP32 stores the zone schedules directly in non-volatile flash (`EspNvs`).
 - **Pre-gzipped React [PWA](https://en.wikipedia.org/wiki/Progressive_web_app):** The 620 KB compiled React frontend bundle shrinks to 207 KB with `gzip -9`, embedded directly into the Rust binary via `include_bytes!` and served by `EspHttpServer` with `Content-Encoding: gzip`.
@@ -197,7 +197,7 @@ By the end of the session, using a mix of Opus 5.5, Gemini Flash 3.8, and Gemini
 
 As for the 2038 problem on our little microcontroller?
 
-Earlier in the evening, when setting up the Cargo target flags in `.cargo/config.toml`, we had added:
+Earlier in the evening, when setting up the Cargo target flags in `.cargo/config.toml`, my agent had added:
 
 ```toml
 [target.xtensa-esp32-espidf]
