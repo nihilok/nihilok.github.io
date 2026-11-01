@@ -1,4 +1,5 @@
 ---
+date: 2026-11-01
 layout: post
 title: "The Edge-and-Node Trap: Why Makefiles Were Never Meant for Tasks"
 ---
