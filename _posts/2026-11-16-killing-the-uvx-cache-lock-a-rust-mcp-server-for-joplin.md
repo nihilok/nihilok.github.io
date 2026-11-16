@@ -1,4 +1,5 @@
 ---
+date: 2026-11-16
 layout: post
 title: "Killing the uvx Cache Lock: A Rust MCP Server for Joplin"
 ---
