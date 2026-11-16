@@ -118,7 +118,8 @@ After (joplin-mcp in Rust):
 
 No package runner contention. No Python runtime in the hot path. No hardcoded API tokens in `~/.claude.json`. Just one binary that starts immediately and stays out of the way.
 
+Available on [crates.io](https://crates.io/crates/joplin-mcp) (`v0.1.0`) and [GitHub](https://github.com/nihilok/joplin-mcp):
+
 ```sh
-git clone https://github.com/nihilok/joplin-mcp
-cd joplin-mcp && cargo install --path .
+cargo install joplin-mcp
 ```
