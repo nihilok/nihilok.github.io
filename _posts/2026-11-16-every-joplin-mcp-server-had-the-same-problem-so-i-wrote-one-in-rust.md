@@ -1,7 +1,7 @@
 ---
 date: 2026-11-16
 layout: post
-title: "Killing the uvx Cache Lock: A Rust MCP Server for Joplin"
+title: "Every Joplin MCP Server Had the Same Problem, So I Wrote One in Rust"
 ---
 
 You open three terminal panes to run three concurrent agent sessions. Each session boots its configured MCP servers over `stdio`. Two seconds later, two of them are wedged waiting on the `uv` cache lock while the third spends a second and a half warming up a Python interpreter just to read a note from localhost.
