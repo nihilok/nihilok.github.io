@@ -85,11 +85,24 @@ Under the hood, the entire binary stays lean:
 
 * **Five crates:** `clap`, `regex`, `serde`, `serde_json`, and `ureq`. No async runtime, no Tokio thread pools, no heavy dependency tree.
 * **Strict MCP handshake:** Negotiates `protocolVersion` (`2024-11-05`) cleanly over `stdio` JSON-RPC 2.0.
-* **Zero panics allowed:** `Cargo.toml` sets `clippy::pedantic` and denies both `unwrap_used` and `expect_used`. Pre-commit hooks enforce `cargo fmt --all -- --check`, `cargo clippy --all-targets -- -D warnings`, and `cargo test` on every commit.
 
 ---
 
-## 4. Before and After
+## 4. Why It Came Together in One Session
+
+The entire initial build landed cleanly in a single session, and the biggest reason wasn't clever prompting: it was putting strict Rust guardrails in place **from the very first prompt**, before a single line of application code existed.
+
+`Cargo.toml` sets `clippy::pedantic` and denies both `unwrap_used` and `expect_used`. A git pre-commit hook enforces `cargo fmt --all -- --check`, `cargo clippy --all-targets -- -D warnings`, and `cargo test` on every commit.
+
+When you make the compiler and linter that unforgiving from commit zero, the agent cannot accumulate debt:
+
+* **No sloppy error paths:** Denying `.unwrap()` and `.expect()` forces proper `Result` propagation across every HTTP call, JSON parse, and `stdio` read from the start.
+* **No argument bloat:** `clippy::pedantic` flags sprawling parameter lists (`too_many_arguments`) immediately, pushing the design towards clean option structs instead of 10-argument helper functions.
+* **Immediate edge-case feedback:** Rather than refactoring a messy prototype at the end, formatting, warnings, and test failures are caught at every single commit boundary.
+
+---
+
+## 5. Before and After
 
 ```text
 Before (uvx + workaround):
