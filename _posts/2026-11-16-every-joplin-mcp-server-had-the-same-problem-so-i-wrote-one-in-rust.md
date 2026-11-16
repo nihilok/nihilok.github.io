@@ -26,7 +26,7 @@ But `stdio` MCP servers have an awkward lifecycle: **the client spawns a fresh s
 2. **Cold-start overhead:** Every new session pays Python interpreter startup and import time before answering `initialize`.
 3. **Daemon drift:** Moving to a shared `launchd` or `systemd` HTTP server on port `8766` solves the lock, but now you have a stateful background service instead of simple `stdio` plumbing.
 
-I'd already seen how clean a single compiled binary feels with [`run`](https://github.com/nihilok/run)'s `--serve-mcp` flag: drop one static binary in `~/.local/bin`, point the MCP config at it, and forget it exists. With `joplin-mcp`, I took that same pattern and made `stdio` MCP the entire binary.
+What led to the idea was that I already had this pattern working successfully with my own [Run](https://github.com/nihilok/run) MCP server (`run --serve-mcp`): drop one compiled Rust binary in `~/.local/bin`, point the MCP config at it, and forget it exists. With `joplin-mcp`, I took that same pattern and made `stdio` MCP the entire binary.
 
 Your MCP config collapses to four lines with zero arguments:
 
