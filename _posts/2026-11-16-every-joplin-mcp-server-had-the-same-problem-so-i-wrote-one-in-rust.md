@@ -8,7 +8,7 @@ You open three terminal panes to run three concurrent agent sessions. Each sessi
 
 If you run a single agent at a time, `uvx` is lovely. The moment you run parallel sessions across Claude Code, Codex, and Antigravity (`agy`), every new session spawns its own `uvx` wrapper, contends on the same shared cache, and pays the Python startup tax before a single JSON-RPC byte crosses the wire.
 
-On macOS, we had worked around it by running a shared `launchd` HTTP MCP server on port `8766` so multiple sessions could talk to one long-lived Python process. It stopped the lock contention, at the cost of yet another daemon to keep alive, another port to manage, and another config divergence between machines.
+Previously, whenever I discovered this happening with `uvx`/`npx` servers, I had worked around it by running a shared `launchd`/`systemd` HTTP MCP server on port `8766` so multiple sessions could talk to one long-lived Python/Node process. It stopped the lock contention, at the cost of yet another daemon to keep alive, another port to manage, and another config divergence between machines.
 
 The cleaner fix was obvious: stop wrapping a localhost HTTP API in a Python runtime at all.
 
