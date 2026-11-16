@@ -42,7 +42,27 @@ Your MCP config collapses to four lines with zero arguments:
 
 ---
 
-## 2. Zero-Config Profile Auto-Discovery
+## 2. Five Minutes, Not "Vibe-Coded": Why Rust + Strict Hooks Works
+
+From the first prompt to publishing `v0.1.0` on `crates.io`, the entire project took roughly five minutes.
+
+Mention a five-minute agentic build online and someone will immediately call it "vibe-coded" slop. In a loosely typed language, that criticism is often fair: an agent can sprint through a Python or Node prototype that passes one happy-path check while hiding silent `None`s, swallowed exceptions, and tangled functions.
+
+With **Rust** and an unforgiving verification harness from commit zero, you can't really fail:
+
+1. **Rust is built for agentic coding:** The borrow checker, exhaustive `match` arms, and explicit `Result` types act as an impartial senior reviewer on every single edit. If an error path isn't handled, it doesn't compile.
+2. **Strict Clippy from the very first prompt:** `Cargo.toml` enables `clippy::pedantic` and denies both `unwrap_used` and `expect_used`.
+3. **Pre-commit gates on every commit:** A git pre-commit hook enforces `cargo fmt --all -- --check`, `cargo clippy --all-targets -- -D warnings`, and `cargo test` before any commit can land.
+
+When those guardrails are in place before a single line of application code exists, the agent cannot accumulate debt:
+
+* **No sloppy error paths:** Denying `.unwrap()` and `.expect()` forces proper `Result` propagation across every HTTP call, JSON parse, and `stdio` read from the start.
+* **No argument bloat:** `clippy::pedantic` flags sprawling parameter lists (`too_many_arguments`) immediately, pushing the design towards clean option structs instead of 10-argument helper functions.
+* **Immediate edge-case feedback:** Formatting, warnings, and test regressions are rejected at every commit boundary rather than piled up for a painful cleanup pass later.
+
+---
+
+## 3. Zero-Config Profile Auto-Discovery
 
 A good local CLI tool shouldn't force you to copy-paste API tokens into every machine's `~/.claude.json` or agent config just to talk to localhost.
 
@@ -72,7 +92,7 @@ If you do pass an explicit token (for instance, talking to a specific port or re
 
 ---
 
-## 3. Safety by Default, Strict by Design
+## 4. Safety by Default, Lean by Design
 
 Giving an autonomous coding agent access to your personal knowledge base is only comfortable if the blast radius is bounded.
 
@@ -86,20 +106,6 @@ Under the hood, the entire binary stays lean:
 
 * **Five crates:** `clap`, `regex`, `serde`, `serde_json`, and `ureq`. No async runtime, no Tokio thread pools, no heavy dependency tree.
 * **Strict MCP handshake:** Negotiates `protocolVersion` (`2024-11-05`) cleanly over `stdio` JSON-RPC 2.0.
-
----
-
-## 4. Why It Came Together in One Session
-
-The entire initial build landed cleanly in a single session, and the biggest reason wasn't clever prompting: it was putting strict Rust guardrails in place **from the very first prompt**, before a single line of application code existed.
-
-`Cargo.toml` sets `clippy::pedantic` and denies both `unwrap_used` and `expect_used`. A git pre-commit hook enforces `cargo fmt --all -- --check`, `cargo clippy --all-targets -- -D warnings`, and `cargo test` on every commit.
-
-When you make the compiler and linter that unforgiving from commit zero, the agent cannot accumulate debt:
-
-* **No sloppy error paths:** Denying `.unwrap()` and `.expect()` forces proper `Result` propagation across every HTTP call, JSON parse, and `stdio` read from the start.
-* **No argument bloat:** `clippy::pedantic` flags sprawling parameter lists (`too_many_arguments`) immediately, pushing the design towards clean option structs instead of 10-argument helper functions.
-* **Immediate edge-case feedback:** Rather than refactoring a messy prototype at the end, formatting, warnings, and test failures are caught at every single commit boundary.
 
 ---
 
