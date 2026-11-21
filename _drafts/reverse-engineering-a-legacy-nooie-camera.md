@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Unstripped Symbols and ENet: Reverse-Engineering a Legacy Nooie Camera"
+title: "Reverse-Engineering a Legacy Nooie Camera"
 ---
 
 I bought a Nooie Cam 360 (`IPC100B`) five years ago when my son was a baby. For five years, it has been stuck behind the vendor's Android app: useful for checking in from a phone, useless for everything else.
