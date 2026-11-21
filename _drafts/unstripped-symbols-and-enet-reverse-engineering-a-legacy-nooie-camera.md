@@ -3,7 +3,11 @@ layout: post
 title: "Unstripped Symbols and ENet: Reverse-Engineering a Legacy Nooie Camera"
 ---
 
-You spin up `nooie-proxy` to pull a £25 Nooie Cam 360 (`IPC100B`) into Home Assistant, hit connect, and get `code=1104` on `create_session`. Or, if it gets past session creation, it sits there for thirty seconds waiting on a WebRTC `SdpOffer` answer that never arrives.
+I bought a Nooie Cam 360 (`IPC100B`) five years ago when my son was little. For five years, it has been stuck behind the vendor's Android app: useful for checking in from a phone, useless for everything else.
+
+Now that reverse engineering a proprietary protocol is fairly trivial, I finally decided to pull it into Home Assistant (and from there into Google Home and onto the TV).
+
+You spin up `nooie-proxy`, hit connect, and get `code=1104` on `create_session`. Or, if it gets past session creation, it sits there for thirty seconds waiting on a WebRTC `SdpOffer` answer that never arrives.
 
 Oh, and if you logged in with the same Nooie account your phone uses, it just kicked your phone out of the app too.
 
@@ -77,7 +81,7 @@ Three small details make it livable in daily use:
 2. **No thumbnail polling:** Home Assistant uses the **Generic Camera** integration (`rtsp_transport: tcp`) with `still_image_url` left blank, and Frigate omits `kids_room` from `cameras:` (keeping it strictly under `go2rtc.streams` with a transcode fallback for WebRTC browsers). Nothing polls the camera in the background.
 3. **Second account:** Nooie's backend invalidates existing sessions on a fresh login. Sharing the camera to a dedicated second Nooie account stops Home Assistant from logging your phone out.
 
-A 45-second continuous `ffmpeg` soak test passed with the 10-second heartbeat keeping the peer alive (`SOAK_45S_OK`), `ffprobe` confirmed `hevc 1920x1080` + `aac 16000 Hz mono`, and the live feed opened cleanly in the Home Assistant Android app.
+A 45-second continuous `ffmpeg` soak test passed with the 10-second heartbeat keeping the peer alive (`SOAK_45S_OK`), `ffprobe` confirmed `hevc 1920x1080` + `aac 16000 Hz mono`, and the live feed opened cleanly in the Home Assistant Android app, Google Home, and on the TV.
 
 ---
 
@@ -93,4 +97,4 @@ The clean upstream path is already mapped out:
 
 ---
 
-No RTSP. No vendor bridge. Just an unstripped `.so`, a 20-year-old game networking library, and 256 bytes of Twofish between a legacy camera and Home Assistant.
+Five years locked in a vendor app. No RTSP. No ONVIF. Just an unstripped `.so`, a 20-year-old game networking library, and 256 bytes of Twofish between a forgotten camera and the living room TV.
