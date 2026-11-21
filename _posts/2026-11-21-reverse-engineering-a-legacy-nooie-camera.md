@@ -1,4 +1,5 @@
 ---
+date: 2026-11-21
 layout: post
 title: "Reverse-Engineering a Legacy Nooie Camera"
 ---
